@@ -3,15 +3,21 @@ title: Electron Notes
 categories: Geek
 photos: https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Extra/20191228/Electron.png
 date: 2019-9-28
+
 ---
-# Electorn 
+
+# Electorn
+
 ## 技术栈
+
 ## 环境搭建
+
 1.Node.js
 
 2.Git
 [NVM]()
 常用命令：
+
 ```shell
 nvm arch    #版本64or32
 nvm install [version] [arch]  #安装
@@ -26,7 +32,9 @@ nvm use [version] [arch]
 nvm root [path]
 nvm version
 ```
+
 npm初始化
+
 ```shell
 #查看部分配置信息
 npm config ls
@@ -39,41 +47,51 @@ npm config set prefix "F:\Develop_Node.js\Gobal_Npm_Module"
 npm config set cache "F:\Develop_Node.js\Gobal_Npm_Cache"
 #修改Npm cache位置
 ```
+
 PS:其他也可以设置
 
 安装cnpm
+
 ```shell
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 #此外需添加环境变量
 cnpm -v
 ```
+
 PS :
 problem:
+
 ```
  The process cannot access the file because it is being used by another process.
 ```
+
 方案1：
 淘宝镜像
+
 ```shell
 nvm node_mirror https://npm.taobao.org/mirrors/node/
 nvm npm_mirror https://npm.taobao.org/mirrors/npm/ 
 ```
+
 方案2：
 直接下载个exe安装到nvm所指定的路径名称改为(LTS版本：'v12.13.1')
 
 3.Electorn
->(1)克隆示例项目的仓库
+
+> (1)克隆示例项目的仓库
 
 ```shell
 git clone https://github.com/electron/electron-quick-start
 ```
 
->(2)进入仓库
+> (2)进入仓库
+
 ```shell
 cd electron-quick-start
 ```
 
->(3)安装依赖并启动
+> (3)安装依赖并启动
+
 ```shell
 cnpm install or npm install
 npm start
@@ -82,16 +100,23 @@ registry=https://registry.npm.taobao.org
 electron_mirror="https://npm.taobao.org/mirrors/electron/"
 PS:install.js文件中有electron_mirror这一项，使用cnpm没问题
 ```
+
 [npm地址](http://caibaojian.com/npm/troubleshooting/if-your-npm-is-broken.html)
 
-## 进程和线程 
+## 进程和线程
+
 ### 什么是进程
+
 ### 什么是线程
+
 ### 进程与线程的区别
+
 1.内存使用方面的区别
 2.通信机制方面的区别
 3.量级方面的区别
+
 ## Electorn 主进程和渲染进程
+
 chrom 多进程管理{主进程+渲染进程}
 main process
 使用和系统对接的Electorn API-创建菜单,创建菜单,上传文件等
@@ -104,9 +129,12 @@ Render Process
 全面支持Node.js和Dom API
 可使用部分Electron 进程
 [Multi-process Architecture](https://www.chromium.org/developers/design-documents/multi-process-architecture)
+
 ## 创建Browser Window
+
 cnpm install --save-dev nodemon
 Edit package.json
+
 ```json
 {
   "name": "electron-quick-start",
@@ -132,6 +160,7 @@ Edit package.json
   }
 }
 ```
+
 Main.js
 
 ```js
@@ -151,13 +180,16 @@ app.on('ready', () => {
   mainWindow.loadFile('index.html')
 })
 ```
+
 ## 进程间的通信
+
 Electron使用IPC(interprocess communication)进行通信
 
 开发者工具:
 
 Devtron
 An Electron DevTools Extension
+
 ```shell
 # Install Devtron
 $ npm install --save-dev devtron
@@ -166,18 +198,23 @@ $ npm install --save-dev devtron
 require('devtron').install()
 # You should now see a Devtron tab added to the DevTools
 ```
+
 ## 使用IPC进行通信
+
 ipcMain
 ipcRenderer
+
 ## 使用remote实现跨进程访问
 
 ## react
+
 **特性**
 声明式写法
 组件化
 一次学习,随处编写
 
 react install
+
 ```shell
 npx create-react-app my-app
 #为何不使用npm install -g create-react-app
@@ -188,6 +225,7 @@ npm start
 npx的用法
 
 [npx说明](https://www.npmjs.com/package/npx)
+
 ```shell
 #node_moudles/.bin/nodemon --version
 npx nodemon --version

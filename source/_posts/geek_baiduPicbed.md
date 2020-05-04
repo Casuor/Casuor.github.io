@@ -1,9 +1,12 @@
 ---
+
 title: BaiduCloud Picbed
 categories: Geek
 photos: https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Extra/20180825/baidupicbed.jpg
 date: 2018-8-25
+
 ---
+
 ## 百度下载图片链：
 
 <https://image.baidu.com/search/down?tn=download&url=><u>巴拉巴拉.jpg</u>
@@ -25,7 +28,7 @@ date: 2018-8-25
 得到：
 
 > Request URL: 
->
+> 
 > http://g.hiphotos.baidu.com/image/pic/item/37d12f2eb9389b5021eedd048b35e5dde7116e56.jpg
 
 在筛选后的数据请求里，有个名称为 `a_upload?fr=html5&target=pcSearchImage&needJson=true`的请求很是可疑，因此点开查看请求详情。
@@ -41,7 +44,7 @@ date: 2018-8-25
 ```
 
 > 解析：错误；
->
+> 
 > 错误问题：nofile; 类型：上传文件
 
 至此，我们成功抓取到了百度识图的图片上传接口，接下来可以正式搞事情了
@@ -54,7 +57,7 @@ date: 2018-8-25
 
 ```php
 <?php
- 
+
 /**
  * 上传图片到百度识图接口，获取图片外链
  * 
@@ -65,17 +68,17 @@ date: 2018-8-25
 function uploadToBaidu($file) {
     // API 接口地址
     $url = 'http://image.baidu.com/pcdutu/a_upload?fr=html5&target=pcSearchImage&needJson=true';
-    
+
     // 文件不存在
     if(!file_exists($file)) return '';
-    
+
     // POST 文件
     if (class_exists('CURLFile')) {     // php 5.5
         $post['file'] = new CURLFile(realpath($file));
     } else {
         $post['file'] = '@'.realpath($file);
     }
-    
+
     // CURL 模拟提交
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL , $url);
@@ -84,10 +87,10 @@ function uploadToBaidu($file) {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
     $output = curl_exec($ch);
     curl_close($ch);
-    
+
     // 返回结果为空（上传失败）
     if($output == '') return '';
-    
+
     // 解析数据
     $output = json_decode($output, true);
     if(isset($output['url']) && $output['url'] != '') {
@@ -95,9 +98,8 @@ function uploadToBaidu($file) {
     }
     return '';
 }
- 
+
 // 使用示例：
 $url = uploadToBaidu('1.jpg');
 echo $url;
 ```
-

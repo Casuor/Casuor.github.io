@@ -11,33 +11,45 @@ date: 2019-10-28
 
 ## 浏览器
 
-`Chrome`
+[Chrome](https://www.google.com/chrome/)
 
-`Opera`
+[EDGE](https://www.microsoft.com/en-us/edge)
 
-`EDGE`
-
-`Firefxo`
+[Firefxo](https://www.firefox.com.cn/download/)
 
 ## 通信
 
-`telegram`
+[telegram](https://www.microsoft.com/zh-cn/p/telegram-desktop/9nztwsqntd0s#activetab=pivot:overviewtab)
 
+### TG群
+[reference1](http://suo.im/6ebJiI)
+[reference2](http://suo.im/5Jqvy9)
 ## 截图
 
 [Snipaste](https://docs.snipaste.com/zh-cn/)
 
 ## 视频播放器
 
-[Potplayer](http://potplayer.org/)
+[Potplayer](https://potplayer.org/)
+[爱奇艺万能联播](http://mbdapp.iqiyi.com/j/ot/GeePlayerSetup_app.exe)
+[MPC-HC](https://mpc-hc.org/)
+## 网络电视
+[ZY Player](https://github.com/Hunlongyu/ZY-Player)
+[柠檬影视]()
+
+## 在线视频(大都是个人维护,易失效,这类网站巨多)
+[919yy影视](https://vod.919yy.com/)
+[在线影视](https://www.zxzj.me/)
 
 ## 音频播放器
 
 Groove
+[MusicPlayer](https://github.com/zhongyang219/MusicPlayer2)
 
 ## 音乐播放器
 
 网易云音乐&[解锁灰色歌曲](https://zhuanlan.zhihu.com/p/79631291)
+`QQ音乐`
 
 ## 系统工具
 
