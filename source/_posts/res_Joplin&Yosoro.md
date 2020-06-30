@@ -1,7 +1,7 @@
 ---
 title: Joplin & Yosoro
 categories: Resource
-photos: https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Extra/20191228/colors.png
+photos: https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg
 date: 2020-04-01
 ---
 
