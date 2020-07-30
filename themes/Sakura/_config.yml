@@ -35,7 +35,7 @@ menus:
   关于: { path: /, fa: fa-leaf faa-wrench , submenus: { 
     我？: {path: /about/, fa: fa-meetup}, 
     #主题: {path: /theme-sakura/, fa: iconfont icon-sakura },
-    Lab: {path: /lab/, fa: fa-cogs },
+    #Lab: {path: /lab/, fa: fa-cogs },
   } }
   #客户端: { path: /client/, fa: fa-android faa-vertical }
   RSS: { path: /atom.xml, fa: fa-rss faa-pulse }
@@ -63,7 +63,7 @@ bgclass: filter-dot
 startdash: 
   - {url: /theme-sakura/, title: Sakura, desc: 本站 hexo 主题, img: /Image/Startdash/hs1.png}
   - {url: https://space.bilibili.com/95683540, title: Bilibili, desc: 博主的b站视频, img: /Image/Startdash/hs2.png}
-  - {url: /, title: Nothing, desc: 猪, img:  /Image/Startdash/hs3.png}
+  - {url: https://casuormi.neocities.org/, title: Nothing, desc: 你人在哪, img:  /Image/Startdash/hs3.png}
 
 
 
