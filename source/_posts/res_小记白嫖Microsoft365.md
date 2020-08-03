@@ -1,6 +1,6 @@
 ---
 title: 小记白嫖Microsoft365
-categories: Geek
+categories: Resource
 photos: https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg
 date: 2020-05-03
 
