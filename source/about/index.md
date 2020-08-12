@@ -20,18 +20,19 @@ photos: https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Category/me.jpg
         <h4>要比无邪还无害</h4>
           <h4>要比放下放得开</h4>
     <p>
-    简约自卑内向观察洞悉思索,数据主义,单身,处女座<br>
+    <br>
+    简约内向观察洞悉思索,数据主义,沙雕，鬼畜爱好者,单身,爱好女,处女座<br>
    	世事繁杂，追求真我，爱我所爱<br>
-    小说<太宰治><村上春树><三岛由纪夫><尤瓦尔·赫拉利><王阳明>.etc,其他(推理小说)也有涉猎<br>
-    看冒险悬疑,推理剧如 <福尔摩斯><越狱>.etc<br>
-    lol忠实粉,亚索，风一样的信仰，随心而动<br>
+    仅文学小说<太宰治><村上春树><三岛由纪夫><尤瓦尔·赫拉利><王阳明>.etc<br>
+    影视剧冒险悬疑,推理如 <福尔摩斯><越狱><阿加莎>.etc<br>
+    游戏lol忠实粉,亚索,快乐风男,秋名山传奇车神<br>
     <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Extra/yasuo.png">
     <br>
     杰迷,会唱小部分<br>
-    爱编码爱阅读<br>
+    爱编程爱阅读<br>
     不羁俗世，随性而活<br>
     <a href="https://casuor.carrd.co/">about</a><br>
-    <a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/me.jpg">丑照</a>
+    <a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/me.jpg">了解me</a>
     </p>
     </center>
     <bot-ui></botui>
