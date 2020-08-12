@@ -30,7 +30,8 @@ photos: https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Category/me.jpg
     杰迷,会唱小部分<br>
     爱编码爱阅读<br>
     不羁俗世，随性而活<br>
-    <a href="https://casuor.carrd.co/">about</a>
+    <a href="https://casuor.carrd.co/">about</a><br>
+    <a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/me.jpg">丑照</a>
     </p>
     </center>
     <bot-ui></botui>
