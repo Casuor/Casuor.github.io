@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">Java Notes | Casuor</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Casuor";
+  mashiro_option.author_name = "";
+  mashiro_option.site_url = "https://casuor.top";
+  mashiro_option.v_appId = "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz";
+  mashiro_option.v_appKey = "L1bSPRMkKoL4w1KzkT85rXnl";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/1.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/2.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/3.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/4.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/5.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/6.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/7.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/8.png".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body
+  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+
+  <div class="scrollbar" id="bar">
+    <!--实现换肤-->
+    <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+</div>
+<canvas id="night-mode-cover"></canvas>
+    <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> <span id="open-skinMenu"> 切换主题 | SCHEME TOOL &nbsp;<i
+                class="iconfont icon-gear inline-block rotating"></i> </span></div>
+</div>
+  </div>
+
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://casuor.top">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>The wheel turns,nothing is ever new!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/Casuor" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/github.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://j.mp/35ycJAK" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/sina.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/user/home?id=280651004" target="_blank" class="social-github" title="netease">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/neat.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/EyDBkb.io/activities" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/zhihu.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://t.me/Eyestar" target="_blank" class="social-github" title="telegram">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/Telegram.ico">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Casuor</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/Geek/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Live/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Resource/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Thinking/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Transfer/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/Reading/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Comic/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          动漫
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Picture/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          我的盘
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div class="pattern-center single-center">
+  <!-- 有配图默认渲染第一张 -->
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Commom/xiangxiang.jpg);"
+    src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Commom/xiangxiang.jpg">
+  </div>
+  <header class="pattern-header single-header">
+    <h1 class="entry-title">
+      Java Notes</h1>
+    <p class="entry-census">
+      <span>
+        <a href="">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/favicon.ico">
+        </a>
+      </span>
+      <span>
+        <a href=""></a>
+      </span>
+      <span class="bull">
+        ·</span>
+      2018-3-25<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+  </header>
+</div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1"
+        class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="JavaEE"><a href="#JavaEE" class="headerlink" title="JavaEE"></a>JavaEE</h1><h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><h3 id="tomcat启动问题"><a href="#tomcat启动问题" class="headerlink" title="tomcat启动问题"></a>tomcat启动问题</h3><h4 id="1-一闪而过"><a href="#1-一闪而过" class="headerlink" title="1.一闪而过"></a>1.一闪而过</h4><blockquote>
+<p>未找到jdk%JAVA_HOME%</p>
+</blockquote>
+<h4 id="2-报错-端口占用"><a href="#2-报错-端口占用" class="headerlink" title="2.报错-端口占用"></a>2.报错-端口占用</h4><pre><code>cmd netstat -ano  找到8080进程pid 在任务管理器中关掉
+修改配置</code></pre><h3 id="部署方式"><a href="#部署方式" class="headerlink" title="部署方式"></a>部署方式</h3><p><strong>wabapps目录下 __/项目文件</strong></p>
+<p>1.简化部署-项目打包成war包复制到目录下,会自动解压缩</p>
+<p>2.配置server.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context docbase&#x3D;&quot;原项目路径&quot; path&#x3D;&quot;虚拟路径(随便写)&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>缺点:多个项目,配置不安全</p>
+<p>3.在F:\Develop_Apache\apache-tomcat-8.5.45-windows-x64\apache-tomcat-8.5.45\conf\Catalina\localhost目录下创建任意名的xml文件</p>
+<p>键入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context docbase&#x3D;&quot;原项目路径&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>则项目的虚拟路径为/xml的文件名</p>
+<h3 id="静态项目和动态项目的目录结构"><a href="#静态项目和动态项目的目录结构" class="headerlink" title="静态项目和动态项目的目录结构"></a>静态项目和动态项目的目录结构</h3><h3 id="IDEA配置Tomcat"><a href="#IDEA配置Tomcat" class="headerlink" title="IDEA配置Tomcat"></a>IDEA配置Tomcat</h3><p>run-&gt; edit configurations-&gt;tomcatserver</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images20191031210806.png" alt=""></p>
+<h2 id="Servlet和Http请求协议"><a href="#Servlet和Http请求协议" class="headerlink" title="Servlet和Http请求协议"></a>Servlet和Http请求协议</h2><h3 id="Servlet简介-server-applet"><a href="#Servlet简介-server-applet" class="headerlink" title="Servlet简介-server applet"></a>Servlet简介-server applet</h3><p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Imagesservlet%E6%9E%B6%E6%9E%84.png" alt=""></p>
+<p><strong>1）作用：</strong><br>规范了浏览器与服务器(代码编写的一个可以根据用户请求实时的调用执行对应的逻辑代码的一个容器)的数据交互；<br>格式：key:value;<br><strong>2）特点：</strong><br>简单快速；<br>灵活：允许传输任何数据对象，有Content-Type加以标记。<br>无连接：HTTP1.1后支持可持续连接<br>无状态：对于事物处理没有记忆能力<br><strong>3）HTTP交互流程：</strong><br>建立连接<br>发送数据<br>响应客户端<br><strong>4）请求格式：</strong><br>请求头：<br>请求行：<br>空行：<br>请求数据<br><strong>5）get与post的区别</strong><br><strong>6）响应格式及状态码</strong>（三个十进制数字组成，第一个定义了状态码的类型，后两个数组没有分类的作用）<br>HTTP状态码分类：</p>
+<h3 id="demo1"><a href="#demo1" class="headerlink" title="demo1"></a>demo1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.web.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">servlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello servlet"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>web.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.web.servlet.servlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/demo01<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Servlet技术"><a href="#Servlet技术" class="headerlink" title="Servlet技术"></a>Servlet技术</h3><p><strong>Servlet 是什么？</strong></p>
+<blockquote>
+<p>Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。</p>
+<p>使用 Servlet，您可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，还可以动态创建网页。</p>
+</blockquote>
+<p>Java Servlet 通常情况下与使用 CGI（<code>Common Gateway Interface</code>，公共网关接口）实现的程序可以达到异曲同工的效果。但是相比于 CGI，Servlet 有以下几点优势：</p>
+<blockquote>
+<p>性能明显更好。<br>Servlet 在 Web 服务器的地址空间内执行。这样它就没有必要再创建一个单独的进程来处理每个客户端请求。<br>Servlet 是独立于平台的，因为它们是用 Java 编写的。<br>服务器上的 Java 安全管理器执行了一系列限制，以保护服务器计算机上的资源。因此，Servlet 是可信的。<br>Java 类库的全部功能对 Servlet 来说都是可用的。它可以通过 sockets 和 RMI 机制与 applets、数据库或其他软件进行交互。</p>
+</blockquote>
+<p><strong>Servlet 任务</strong></p>
+<p>Servlet 执行以下主要任务：</p>
+<blockquote>
+<p>读取客户端（浏览器）发送的显式的数据。这包括网页上的 HTML 表单，或者也可以是来自 applet 或自定义的 HTTP 客户端程序的表单。<br>读取客户端（浏览器）发送的隐式的 HTTP 请求数据。这包括 cookies、媒体类型和浏览器能理解的压缩格式等等。<br>处理数据并生成结果。这个过程可能需要访问数据库，执行 RMI 或 CORBA 调用，调用 Web 服务，或者直接计算得出对应的响应。<br>发送显式的数据（即文档）到客户端（浏览器）。该文档的格式可以是多种多样的，包括文本文件（HTML 或 XML）、二进制文件（GIF 图像）、Excel 等。<br>发送隐式的 HTTP 响应到客户端（浏览器）。这包括告诉浏览器或其他客户端被返回的文档类型（例如 HTML），设置 cookies 和缓存参数，以及其他类似的任务。</p>
+</blockquote>
+<p><strong>Servlet使用流程：</strong></p>
+<p>1、创建普通Java类，并继承HttpServlet<br>2、覆写service方法<br>3、在service方法中书写逻辑代码<br>4、在webroot下的web-inf文件夹下的web.xml文件中配置servlet(demo1)</p>
+<blockquote>
+<p>​    servlet3.0注解配置</p>
+<p>在类上使用<code>@webservlet(&quot;资源路径&quot;)</code>不需要web.xml配置</p>
+</blockquote>
+<p><strong>Servlet访问流程</strong></p>
+<p>输入URL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器地址：端口号&#x2F;project&#x2F;要执行的servlet的ul-pattern-&gt;classname-&gt;methodname</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Tomcat将全类名对应的字节码文件加载进内存Class.forname()</p>
+<p>创建class对象.newInstance()</p>
+<p>调用service方法</p>
+</blockquote>
+<p><strong>servlet接口的实现</strong></p>
+<p>1、实现 Servlet 接口</p>
+<p>因为是实现 Servlet 接口，所以我们需要实现接口里的方法。</p>
+<p><strong>Servlet生命周期</strong></p>
+<p>Servlet的生命周期:从Servlet被创建到Servlet被销毁的过程</p>
+<p>特点:</p>
+<blockquote>
+<p>一次创建，到处服务<br>一个Servlet只会有一个对象，服务所有的请求</p>
+</blockquote>
+<ul>
+<li><p>1.实例化（使用构造方法创建对象）</p>
+<ul>
+<li><p>指定servlet的创建时机</p>
+<ul>
+<li><p>在servlet标签下配置load-on-startup</p>
+<ul>
+<li><pre><code>&lt;load-on-startup&gt;负整数&lt;/load-on-startup&gt;//第一次访问时
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">*</span><br></pre></td></tr></table></figure>
+&lt;load-on-startup&gt;正整数&lt;/load-on-startup&gt;//服务器启动时
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">           </span><br><span class="line"></span><br><span class="line">* 2.初始化  执行init方法</span><br><span class="line"></span><br><span class="line">* 3.服务     执行service方法</span><br><span class="line"></span><br><span class="line">* 4.销毁    执行destroy方法</span><br></pre></td></tr></table></figure>
+public class ServletDemo1 implements Servlet {
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>//public ServletDemo1(){}</p>
+<pre><code> //生命周期方法:当Servlet第一次被创建对象时执行该方法,该方法在整个生命周期中只执行一次,Servlet在内存中只存在一个对象,多个用户访问时存在线程安全问题,so,尽量不要在Servlet中定义变量,即使定义了不要修改.
+public void init(ServletConfig arg0) throws ServletException {
+            System.out.println(&quot;=======init=========&quot;);
+}
+
+//生命周期方法:对客户端响应的方法,该方法会被执行多次，每次请求该servlet都会执行该方法
+public void service(ServletRequest arg0, ServletResponse arg1)
+        throws ServletException, IOException {
+System.out.println(&quot;hehe&quot;);</code></pre><p>}</p>
+<pre><code>//生命周期方法:当Servlet被销毁时执行该方法
+public void destroy() {
+    System.out.println(&quot;******destroy**********&quot;);</code></pre><p>}<br>    //当停止tomcat时也就销毁的servlet。<br>public ServletConfig getServletConfig() {</p>
+<pre><code>    return null;
+
+}</code></pre><p>//获取Servlet信息<br>    public String getServletInfo() {</p>
+<pre><code>return null;
+
+ }</code></pre><p> }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">2、继承 GenericServlet 类</span><br><span class="line"></span><br><span class="line">它实现了 Servlet 接口除了 service 的方法，不过这种方法我们极少用。</span><br><span class="line"></span><br><span class="line">public class ServletDemo2 extends GenericServlet &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void service(ServletRequest arg0, ServletResponse arg1)</span><br><span class="line">            throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;heihei&quot;);</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3、继承 HttpServlet 方法</span><br><span class="line"></span><br><span class="line">public class ServletDemo3 extends HttpServlet &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp)</span><br><span class="line">            throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;haha&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    protected void doPost(HttpServletRequest req, HttpServletResponse resp)</span><br><span class="line">            throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;ee&quot;);</span><br><span class="line">        doGet(req,resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">**关于 HttpServlet、GenericServlet 和 Servlet 的关系**</span><br><span class="line"></span><br><span class="line">&gt;</span><br><span class="line">&gt; 对于一个 Servlet 类，我们日常最常用的方法是继承自 HttpServlet 类，提供了 Http 相关的方 HttpServlet 扩展了 GenericServlet 类，而 GenericServlet 类又实现了 Servlet 类和 ServletConfig 类。</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">**Servlet方法**</span><br><span class="line"></span><br><span class="line">&gt; Servlet类提供了五个方法，其中三个生命周期方法和两个普通方法，关于 Servlet类的方法，不再赘述，我主要补充一下另外两个类的实现思路。</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">**GenericServlet**</span><br><span class="line"></span><br><span class="line">GenericServlet 是一个抽象类，实现了 Servlet 接口，并且对其中的 init() 和 destroy() 和 service() 提供了默认实现。在 GenericServlet 中，主要完成了以下任务：</span><br><span class="line"></span><br><span class="line">&gt; 将 init() 中的 ServletConfig 赋给一个类级变量，可以由 getServletConfig 获得；</span><br><span class="line">&gt; 为 Servlet 所有方法提供默认实现；</span><br><span class="line">&gt; 可以直接调用 ServletConfig 中的方法；</span><br><span class="line"></span><br><span class="line">基本的结构如下：</span><br></pre></td></tr></table></figure>
+<p>abstract class GenericServlet implements Servlet,ServletConfig{</p>
+<p>   //GenericServlet通过将ServletConfig赋给类级变量<br>   private trServletConfig servletConfig;</p>
+<p>   public void init(ServletConfig servletConfig) throws ServletException {</p>
+<p>  this.servletConfig=servletConfig;</p>
+<p>  /*自定义init()的原因是：如果子类要初始化必须覆盖父类的init() 而使它无效 这样<br>   this.servletConfig=servletConfig不起作用 这样就会导致空指针异常 这样如果子类要初始化，<br>   可以直接覆盖不带参数的init()方法 */<br>  this.init();</p>
+<p>   }</p>
+<p>   //自定义的init()方法，可以由子类覆盖<br>   //init()不是生命周期方法<br>   public void init(){</p>
+<p>   }</p>
+<p>   //实现service()空方法，并且声明为抽象方法，强制子类必须实现service()方法<br>   public abstract void service(ServletRequest request,ServletResponse response)<br>     throws ServletException,java.io.IOException{<br>   }</p>
+<p>   //实现空的destroy方法<br>   public void destroy(){ }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">以上就是 GenericServlet 的大致实现思想，可以看到如果继承这个类的话，我们必须重写 service() 方法来对处理请求。</span><br><span class="line"></span><br><span class="line">**HttpServlet**</span><br><span class="line"></span><br><span class="line">HttpServlet 也是一个抽象类，它进一步继承并封装了 GenericServlet，使得使用更加简单方便，由于是扩展了 Http 的内容，所以还需要使用 HttpServletRequest 和 HttpServletResponse，这两个类分别是 ServletRequest 和 ServletResponse 的子类。代码如下：</span><br></pre></td></tr></table></figure>
+<p>abstract class HttpServlet extends GenericServlet{</p>
+<p>   //HttpServlet中的service()<br>   protected void service(HttpServletRequest httpServletRequest,<br>                       HttpServletResponse httpServletResponse){<br>        //该方法通过httpServletRequest.getMethod()判断请求类型调用doGet() doPost()<br>   }</p>
+<p>   //必须实现父类的service()方法<br>   public void service(ServletRequest servletRequest,ServletResponse servletResponse){<br>      HttpServletRequest request;<br>      HttpServletResponse response;<br>      try{<br>         request=(HttpServletRequest)servletRequest;<br>         response=(HttpServletResponse)servletResponse;<br>      }catch(ClassCastException){<br>         throw new ServletException(“non-http request or response”);<br>      }<br>      //调用service()方法<br>      this.service(request,response);<br>   }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">我们可以看到，HttpServlet 中对原始的 Servlet 中的方法都进行了默认的操作，不需要显式的销毁初始化以及 service()，在 HttpServlet 中，自定义了一个新的 service() 方法，其中通过 getMethod() 方法判断请求的类型，从而调用 doGet() 或者 doPost() 处理 get,post 请求，使用者只需要继承 HttpServlet，然后重写 doPost() 或者 doGet() 方法处理请求即可。</span><br><span class="line"></span><br><span class="line">PS:IDEA与Tomcat配置</span><br><span class="line"></span><br><span class="line">&#96;IDEA会为每一个tomcat部署的项目单独创建一份配置文件&#96;</span><br><span class="line"></span><br><span class="line">控制台log:using CATALINA_BASE:</span><br><span class="line"></span><br><span class="line">&#96;工作空间项目和tomcat部署的web项目&#96;</span><br><span class="line"></span><br><span class="line">- tomcat真正访问的是&quot;tomcat部署的web项目&quot;,&quot;tomcat部署的web项目&quot;对应者工作空间项目下的所有资源.</span><br><span class="line"></span><br><span class="line">- WEB-INF目录下的资源不能被浏览器直接访问.</span><br><span class="line"></span><br><span class="line">  ------</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">### Http协议</span><br><span class="line"></span><br><span class="line">* 概念：Hyper Text Transfer Protocol 超文本传输协议</span><br><span class="line">	* 传输协议：定义了，客户端和服务器端通信时，发送数据的格式</span><br><span class="line">	* 特点：</span><br><span class="line">		1. 基于TCP&#x2F;IP的高级协议</span><br><span class="line">		2. 默认端口号:80</span><br><span class="line">		3. 基于请求&#x2F;响应模型的:一次请求对应一次响应</span><br><span class="line">		4. 无状态的：每次请求之间相互独立，不能交互数据</span><br><span class="line"></span><br><span class="line">	* 历史版本：</span><br><span class="line">		* 1.0：每一次请求响应都会建立新的连接</span><br><span class="line">		* 1.1：复用连接</span><br><span class="line"></span><br><span class="line">* 请求消息数据格式</span><br><span class="line">	1. 请求行</span><br><span class="line">		请求方式 请求url 请求协议&#x2F;版本</span><br><span class="line">		GET &#x2F;login.html	HTTP&#x2F;1.1</span><br><span class="line"></span><br><span class="line">		* 请求方式：</span><br><span class="line">			* HTTP协议有7中请求方式，常用的有2种</span><br><span class="line">				* GET：</span><br><span class="line">					1. 请求参数在请求行中，在url后。</span><br><span class="line">					2. 请求的url长度有限制的</span><br><span class="line">					3. 不太安全</span><br><span class="line">				* POST：</span><br><span class="line">					1. 请求参数在请求体中</span><br><span class="line">					2. 请求的url长度没有限制的</span><br><span class="line">					3. 相对安全</span><br><span class="line">	2. 请求头：客户端浏览器告诉服务器一些信息</span><br><span class="line">		请求头名称: 请求头值</span><br><span class="line">		* 常见的请求头：</span><br><span class="line">			1. User-Agent：浏览器告诉服务器，我访问你使用的浏览器版本信息</span><br><span class="line">				* 可以在服务器端获取该头的信息，解决浏览器的兼容性问题</span><br><span class="line"></span><br><span class="line">			2. Referer：http:&#x2F;&#x2F;localhost&#x2F;login.html</span><br><span class="line">				* 告诉服务器，我(当前请求)从哪里来？</span><br><span class="line">					* 作用：</span><br><span class="line">						1. 防盗链：</span><br><span class="line">						2. 统计工作：</span><br><span class="line">	3. 请求空行</span><br><span class="line">		空行，就是用于分割POST请求的请求头，和请求体的。</span><br><span class="line">	4. 请求体(正文)：</span><br><span class="line">		* 封装POST请求消息的请求参数的</span><br><span class="line"></span><br><span class="line">	* 字符串格式：</span><br></pre></td></tr></table></figure>
+<pre><code>POST /login.html    HTTP/1.1
+Host: localhost
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost/login.html
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+username=zhangsan    
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">		------</span><br><span class="line">		</span><br><span class="line">		### Request</span><br><span class="line"></span><br><span class="line">## JSTL</span><br><span class="line"></span><br><span class="line">Java Server Pages Tag Library----JSP标准标签库</span><br><span class="line">是由Apache免费提供的用于简化和替换jsp页面上的java代码</span><br><span class="line">使用步骤:</span><br><span class="line">1.导包</span><br><span class="line">2.引入标签库taglib指令&lt;%@ taglib %&gt;</span><br><span class="line">3.使用</span><br><span class="line"></span><br><span class="line">常用标签:</span><br><span class="line">if </span><br><span class="line">&#96;&#96;&#96;jsp</span><br><span class="line">&lt;%@taglib prefix&#x3D;&quot;c&quot; uri&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;jsp&#x2F;jstl&#x2F;core&quot; %&gt;</span><br><span class="line">&lt;%--c:if--%&gt;</span><br><span class="line">&lt;%--test 必须属性,接收boolean表达式,如果为真显示标签的内容,false不显示</span><br><span class="line">一般这个属性值结合EL表达式使用</span><br><span class="line">--%&gt;</span><br></pre></td></tr></table></figure></code></pre><p>choose</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%--c:choose</span><br><span class="line">switch</span><br><span class="line">    when __case</span><br><span class="line">    otherwis default</span><br><span class="line">--%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>foreach</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%--c:foreach</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;c:forEach begin&#x3D;&quot;0&quot; end&#x3D;&quot;10&quot;  step&#x3D;&quot;1&quot; var&#x3D;&quot;i&quot; &gt;</span><br><span class="line">$&#123;i&#125;</span><br><span class="line">&lt;&#x2F;c:forEach&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    List list&#x3D;new ArrayList();</span><br><span class="line">    list.add(&quot;aaa&quot;);</span><br><span class="line">    list.add(&quot;bbb&quot;);</span><br><span class="line">    list.add(&quot;ccc&quot;);</span><br><span class="line">    request.setAttribute(&quot;list&quot;, list);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;c:forEach items&#x3D;&quot;$&#123;list&#125;&quot; varStatus&#x3D;&quot;s&quot; var&#x3D;&quot;str&quot;&gt;</span><br><span class="line">$&#123;s.count&#125;</span><br><span class="line">$&#123;s.index&#125;</span><br><span class="line">&lt;&#x2F;c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent">
+        </div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+              target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i>
+              知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+        <div class="post-nepre half previous">
+          
+            <a href="/2018/03/25/geek_csharpcs/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg"
+                  style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
+                  src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+              </div>
+              <span class="label">
+                Previous Post</span>
+              <div class="info">
+                <h3>
+                  commom-class-C#</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="post-nepre half next">
+            
+              <a href="/2017/09/25/geek_Wifi%E5%82%BB%E7%93%9C%E4%B9%A6/" rel="next">
+                <div class="background">
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+                </div>
+                <span class="label">
+                  Next Post</span>
+                <div class="info">
+                  <h3>
+                    WIFI 傻瓜书(未完)</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz",
+        appKey: "L1bSPRMkKoL4w1KzkT85rXnl",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image"
+              alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+              <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+    </div>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Casuor<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Casuor</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Casuor" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://j.mp/35ycJAK" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/Geek/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Live/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Resource/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Thinking/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Transfer/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/Reading/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Comic/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  动漫
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Picture/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  我的盘
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="3099159214"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+
+</html>

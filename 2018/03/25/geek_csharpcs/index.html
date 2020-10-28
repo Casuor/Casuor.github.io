@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">commom-class-C# | Casuor</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Casuor";
+  mashiro_option.author_name = "";
+  mashiro_option.site_url = "https://casuor.top";
+  mashiro_option.v_appId = "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz";
+  mashiro_option.v_appKey = "L1bSPRMkKoL4w1KzkT85rXnl";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/1.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/2.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/3.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/4.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/5.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/6.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/7.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/8.png".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body
+  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+
+  <div class="scrollbar" id="bar">
+    <!--实现换肤-->
+    <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+</div>
+<canvas id="night-mode-cover"></canvas>
+    <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> <span id="open-skinMenu"> 切换主题 | SCHEME TOOL &nbsp;<i
+                class="iconfont icon-gear inline-block rotating"></i> </span></div>
+</div>
+  </div>
+
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://casuor.top">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>The wheel turns,nothing is ever new!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/Casuor" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/github.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://j.mp/35ycJAK" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/sina.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/user/home?id=280651004" target="_blank" class="social-github" title="netease">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/neat.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/EyDBkb.io/activities" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/zhihu.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://t.me/Eyestar" target="_blank" class="social-github" title="telegram">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/Telegram.ico">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Casuor</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/Geek/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Live/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Resource/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Thinking/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Transfer/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/Reading/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Comic/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          动漫
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Picture/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          我的盘
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div class="pattern-center single-center">
+  <!-- 有配图默认渲染第一张 -->
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg);"
+    src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+  </div>
+  <header class="pattern-header single-header">
+    <h1 class="entry-title">
+      commom-class-C#</h1>
+    <p class="entry-census">
+      <span>
+        <a href="">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/favicon.ico">
+        </a>
+      </span>
+      <span>
+        <a href=""></a>
+      </span>
+      <span class="bull">
+        ·</span>
+      2018-3-25<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+  </header>
+</div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1"
+        class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="Net常用类"><a href="#Net常用类" class="headerlink" title=".Net常用类"></a>.Net常用类</h2><h3 id="1-验证码"><a href="#1-验证码" class="headerlink" title="1.验证码"></a>1.验证码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Drawing;</span><br><span class="line">using System.Drawing.Drawing2D;</span><br><span class="line">using System.Drawing.Imaging;</span><br><span class="line">using System.IO;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Web;</span><br><span class="line"></span><br><span class="line">namespace CZBK.ItcastProject.Common</span><br><span class="line">&#123;</span><br><span class="line">    public class ValidateCode</span><br><span class="line">    &#123;</span><br><span class="line">        public ValidateCode()</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 验证码的最大长度</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public int MaxLength</span><br><span class="line">        &#123;</span><br><span class="line">            get &#123; return 10; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 验证码的最小长度</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public int MinLength</span><br><span class="line">        &#123;</span><br><span class="line">            get &#123; return 1; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 生成验证码</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;length&quot;&gt;指定验证码的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">        public string CreateValidateCode(int length)</span><br><span class="line">        &#123;</span><br><span class="line">            int[] randMembers &#x3D; new int[length];</span><br><span class="line">            int[] validateNums &#x3D; new int[length];</span><br><span class="line">            string validateNumberStr &#x3D; &quot;&quot;;</span><br><span class="line">            &#x2F;&#x2F;生成起始序列值</span><br><span class="line">            int seekSeek &#x3D; unchecked((int)DateTime.Now.Ticks);</span><br><span class="line">            Random seekRand &#x3D; new Random(seekSeek);</span><br><span class="line">            int beginSeek &#x3D; (int)seekRand.Next(0, Int32.MaxValue - length * 10000);</span><br><span class="line">            int[] seeks &#x3D; new int[length];</span><br><span class="line">            for (int i &#x3D; 0; i &lt; length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                beginSeek +&#x3D; 10000;</span><br><span class="line">                seeks[i] &#x3D; beginSeek;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;生成随机数字</span><br><span class="line">            for (int i &#x3D; 0; i &lt; length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Random rand &#x3D; new Random(seeks[i]);</span><br><span class="line">                int pownum &#x3D; 1 * (int)Math.Pow(10, length);</span><br><span class="line">                randMembers[i] &#x3D; rand.Next(pownum, Int32.MaxValue);</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;抽取随机数字</span><br><span class="line">            for (int i &#x3D; 0; i &lt; length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                string numStr &#x3D; randMembers[i].ToString();</span><br><span class="line">                int numLength &#x3D; numStr.Length;</span><br><span class="line">                Random rand &#x3D; new Random();</span><br><span class="line">                int numPosition &#x3D; rand.Next(0, numLength - 1);</span><br><span class="line">                validateNums[i] &#x3D; Int32.Parse(numStr.Substring(numPosition, 1));</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;生成验证码</span><br><span class="line">            for (int i &#x3D; 0; i &lt; length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                validateNumberStr +&#x3D; validateNums[i].ToString();</span><br><span class="line">            &#125;</span><br><span class="line">            return validateNumberStr;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 创建验证码的图片</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;containsPage&quot;&gt;要输出到的page对象&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;validateNum&quot;&gt;验证码&lt;&#x2F;param&gt;</span><br><span class="line">        public void CreateValidateGraphic(string validateCode, HttpContext context)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap image &#x3D; new Bitmap((int)Math.Ceiling(validateCode.Length * 12.0), 22);</span><br><span class="line">            Graphics g &#x3D; Graphics.FromImage(image);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F;生成随机生成器</span><br><span class="line">                Random random &#x3D; new Random();</span><br><span class="line">                &#x2F;&#x2F;清空图片背景色</span><br><span class="line">                g.Clear(Color.White);</span><br><span class="line">                &#x2F;&#x2F;画图片的干扰线</span><br><span class="line">                for (int i &#x3D; 0; i &lt; 25; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    int x1 &#x3D; random.Next(image.Width);</span><br><span class="line">                    int x2 &#x3D; random.Next(image.Width);</span><br><span class="line">                    int y1 &#x3D; random.Next(image.Height);</span><br><span class="line">                    int y2 &#x3D; random.Next(image.Height);</span><br><span class="line">                    g.DrawLine(new Pen(Color.Silver), x1, y1, x2, y2);</span><br><span class="line">                &#125;</span><br><span class="line">                Font font &#x3D; new Font(&quot;Arial&quot;, 12, (FontStyle.Bold | FontStyle.Italic));</span><br><span class="line">                &#x2F;&#x2F;渐变.</span><br><span class="line">                LinearGradientBrush brush &#x3D; new LinearGradientBrush(new Rectangle(0, 0, image.Width, image.Height),</span><br><span class="line">                 Color.Blue, Color.DarkRed, 1.2f, true);</span><br><span class="line">                g.DrawString(validateCode, font, brush, 3, 2);</span><br><span class="line">               </span><br><span class="line">                &#x2F;&#x2F;画图片的前景干扰点</span><br><span class="line">                for (int i &#x3D; 0; i &lt; 100; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    int x &#x3D; random.Next(image.Width);</span><br><span class="line">                    int y &#x3D; random.Next(image.Height);</span><br><span class="line">                    image.SetPixel(x, y, Color.FromArgb(random.Next()));</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F;画图片的边框线</span><br><span class="line">                g.DrawRectangle(new Pen(Color.Silver), 0, 0, image.Width - 1, image.Height - 1);</span><br><span class="line">                &#x2F;&#x2F;保存图片数据</span><br><span class="line">                MemoryStream stream &#x3D; new MemoryStream();</span><br><span class="line">                image.Save(stream, ImageFormat.Jpeg);</span><br><span class="line">                &#x2F;&#x2F;输出图片流</span><br><span class="line">                context.Response.Clear();</span><br><span class="line">                context.Response.ContentType &#x3D; &quot;image&#x2F;jpeg&quot;;</span><br><span class="line">                context.Response.BinaryWrite(stream.ToArray());</span><br><span class="line">            &#125;</span><br><span class="line">            finally</span><br><span class="line">            &#123;</span><br><span class="line">                g.Dispose();</span><br><span class="line">                image.Dispose();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 得到验证码图片的长度</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;validateNumLength&quot;&gt;验证码的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">        public static int GetImageWidth(int validateNumLength)</span><br><span class="line">        &#123;</span><br><span class="line">            return (int)(validateNumLength * 12.0);</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 得到验证码的高度</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">        public static double GetImageHeight()</span><br><span class="line">        &#123;</span><br><span class="line">            return 22.5;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-缩略图"><a href="#2-缩略图" class="headerlink" title="2.缩略图"></a>2.缩略图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections;</span><br><span class="line">using System.IO;</span><br><span class="line">using System.Drawing;</span><br><span class="line">using System.Drawing.Imaging;</span><br><span class="line">using System.Drawing.Drawing2D;</span><br><span class="line"></span><br><span class="line">namespace CZBK.ItcastProject.Common</span><br><span class="line">&#123;</span><br><span class="line">    public class ImageClass</span><br><span class="line">    &#123;</span><br><span class="line">        public ImageClass()</span><br><span class="line">        &#123; &#125;</span><br><span class="line"></span><br><span class="line">        #region 缩略图</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 生成缩略图</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;originalImagePath&quot;&gt;源图路径（物理路径）&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;thumbnailPath&quot;&gt;缩略图路径（物理路径）&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;缩略图宽度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;缩略图高度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;mode&quot;&gt;生成缩略图的方式&lt;&#x2F;param&gt;    </span><br><span class="line">        public static void MakeThumbnail(string originalImagePath, string thumbnailPath, int width, int height, string mode)</span><br><span class="line">        &#123;</span><br><span class="line">            System.Drawing.Image originalImage &#x3D; System.Drawing.Image.FromFile(originalImagePath);</span><br><span class="line"></span><br><span class="line">            int towidth &#x3D; width;</span><br><span class="line">            int toheight &#x3D; height;</span><br><span class="line"></span><br><span class="line">            int x &#x3D; 0;</span><br><span class="line">            int y &#x3D; 0;</span><br><span class="line">            int ow &#x3D; originalImage.Width;</span><br><span class="line">            int oh &#x3D; originalImage.Height;</span><br><span class="line"></span><br><span class="line">            switch (mode)</span><br><span class="line">            &#123;</span><br><span class="line">                case &quot;HW&quot;:  &#x2F;&#x2F;指定高宽缩放（可能变形）                </span><br><span class="line">                    break;</span><br><span class="line">                case &quot;W&quot;:   &#x2F;&#x2F;指定宽，高按比例                    </span><br><span class="line">                    toheight &#x3D; originalImage.Height * width &#x2F; originalImage.Width;</span><br><span class="line">                    break;</span><br><span class="line">                case &quot;H&quot;:   &#x2F;&#x2F;指定高，宽按比例</span><br><span class="line">                    towidth &#x3D; originalImage.Width * height &#x2F; originalImage.Height;</span><br><span class="line">                    break;</span><br><span class="line">                case &quot;Cut&quot;: &#x2F;&#x2F;指定高宽裁减（不变形）                </span><br><span class="line">                    if ((double)originalImage.Width &#x2F; (double)originalImage.Height &gt; (double)towidth &#x2F; (double)toheight)</span><br><span class="line">                    &#123;</span><br><span class="line">                        oh &#x3D; originalImage.Height;</span><br><span class="line">                        ow &#x3D; originalImage.Height * towidth &#x2F; toheight;</span><br><span class="line">                        y &#x3D; 0;</span><br><span class="line">                        x &#x3D; (originalImage.Width - ow) &#x2F; 2;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        ow &#x3D; originalImage.Width;</span><br><span class="line">                        oh &#x3D; originalImage.Width * height &#x2F; towidth;</span><br><span class="line">                        x &#x3D; 0;</span><br><span class="line">                        y &#x3D; (originalImage.Height - oh) &#x2F; 2;</span><br><span class="line">                    &#125;</span><br><span class="line">                    break;</span><br><span class="line">                default:</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;新建一个bmp图片</span><br><span class="line">            System.Drawing.Image bitmap &#x3D; new System.Drawing.Bitmap(towidth, toheight);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;新建一个画板</span><br><span class="line">            System.Drawing.Graphics g &#x3D; System.Drawing.Graphics.FromImage(bitmap);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;设置高质量插值法</span><br><span class="line">            g.InterpolationMode &#x3D; System.Drawing.Drawing2D.InterpolationMode.High;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;设置高质量,低速度呈现平滑程度</span><br><span class="line">            g.SmoothingMode &#x3D; System.Drawing.Drawing2D.SmoothingMode.HighQuality;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;清空画布并以透明背景色填充</span><br><span class="line">            g.Clear(System.Drawing.Color.Transparent);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;在指定位置并且按指定大小绘制原图片的指定部分</span><br><span class="line">            &#x2F;&#x2F;第一个：对哪张图片进行操作。</span><br><span class="line">            &#x2F;&#x2F;二：画多么大。</span><br><span class="line">            &#x2F;&#x2F;三：画那块区域。</span><br><span class="line">            g.DrawImage(originalImage, new System.Drawing.Rectangle(0, 0, towidth, toheight), new System.Drawing.Rectangle(x, y, ow, oh), System.Drawing.GraphicsUnit.Pixel);</span><br><span class="line"></span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F;以jpg格式保存缩略图</span><br><span class="line">                bitmap.Save(thumbnailPath, System.Drawing.Imaging.ImageFormat.Jpeg);</span><br><span class="line">            &#125;</span><br><span class="line">            catch (System.Exception e)</span><br><span class="line">            &#123;</span><br><span class="line">                throw e;</span><br><span class="line">            &#125;</span><br><span class="line">            finally</span><br><span class="line">            &#123;</span><br><span class="line">                originalImage.Dispose();</span><br><span class="line">                bitmap.Dispose();</span><br><span class="line">                g.Dispose();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 图片水印</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 图片水印处理方法</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;path&quot;&gt;需要加载水印的图片路径（绝对路径）&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;waterpath&quot;&gt;水印图片（绝对路径）&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;location&quot;&gt;水印位置（传送正确的代码）&lt;&#x2F;param&gt;</span><br><span class="line">        public static string ImageWatermark(string path, string waterpath, string location)</span><br><span class="line">        &#123;</span><br><span class="line">            string kz_name &#x3D; Path.GetExtension(path);</span><br><span class="line">            if (kz_name &#x3D;&#x3D; &quot;.jpg&quot; || kz_name &#x3D;&#x3D; &quot;.bmp&quot; || kz_name &#x3D;&#x3D; &quot;.jpeg&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                DateTime time &#x3D; DateTime.Now;</span><br><span class="line">                string filename &#x3D; &quot;&quot; + time.Year.ToString() + time.Month.ToString() + time.Day.ToString() + time.Hour.ToString() + time.Minute.ToString() + time.Second.ToString() + time.Millisecond.ToString();</span><br><span class="line">                Image img &#x3D; Bitmap.FromFile(path);</span><br><span class="line">                Image waterimg &#x3D; Image.FromFile(waterpath);</span><br><span class="line">                Graphics g &#x3D; Graphics.FromImage(img);</span><br><span class="line">                ArrayList loca &#x3D; GetLocation(location, img, waterimg);</span><br><span class="line">                g.DrawImage(waterimg, new Rectangle(int.Parse(loca[0].ToString()), int.Parse(loca[1].ToString()), waterimg.Width, waterimg.Height));</span><br><span class="line">                waterimg.Dispose();</span><br><span class="line">                g.Dispose();</span><br><span class="line">                string newpath &#x3D; Path.GetDirectoryName(path) + filename + kz_name;</span><br><span class="line">                img.Save(newpath);</span><br><span class="line">                img.Dispose();</span><br><span class="line">                File.Copy(newpath, path, true);</span><br><span class="line">                if (File.Exists(newpath))</span><br><span class="line">                &#123;</span><br><span class="line">                    File.Delete(newpath);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return path;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 图片水印位置处理方法</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;location&quot;&gt;水印位置&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;img&quot;&gt;需要添加水印的图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;waterimg&quot;&gt;水印图片&lt;&#x2F;param&gt;</span><br><span class="line">        private static ArrayList GetLocation(string location, Image img, Image waterimg)</span><br><span class="line">        &#123;</span><br><span class="line">            ArrayList loca &#x3D; new ArrayList();</span><br><span class="line">            int x &#x3D; 0;</span><br><span class="line">            int y &#x3D; 0;</span><br><span class="line"></span><br><span class="line">            if (location &#x3D;&#x3D; &quot;LT&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; 10;</span><br><span class="line">                y &#x3D; 10;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;T&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width &#x2F; 2 - waterimg.Width &#x2F; 2;</span><br><span class="line">                y &#x3D; img.Height - waterimg.Height;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;RT&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width - waterimg.Width;</span><br><span class="line">                y &#x3D; 10;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;LC&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; 10;</span><br><span class="line">                y &#x3D; img.Height &#x2F; 2 - waterimg.Height &#x2F; 2;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;C&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width &#x2F; 2 - waterimg.Width &#x2F; 2;</span><br><span class="line">                y &#x3D; img.Height &#x2F; 2 - waterimg.Height &#x2F; 2;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;RC&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width - waterimg.Width;</span><br><span class="line">                y &#x3D; img.Height &#x2F; 2 - waterimg.Height &#x2F; 2;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;LB&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; 10;</span><br><span class="line">                y &#x3D; img.Height - waterimg.Height;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;B&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width &#x2F; 2 - waterimg.Width &#x2F; 2;</span><br><span class="line">                y &#x3D; img.Height - waterimg.Height;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width - waterimg.Width;</span><br><span class="line">                y &#x3D; img.Height - waterimg.Height;</span><br><span class="line">            &#125;</span><br><span class="line">            loca.Add(x);</span><br><span class="line">            loca.Add(y);</span><br><span class="line">            return loca;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 文字水印</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 文字水印处理方法</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;path&quot;&gt;图片路径（绝对路径）&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;size&quot;&gt;字体大小&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;letter&quot;&gt;水印文字&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;color&quot;&gt;颜色&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;location&quot;&gt;水印位置&lt;&#x2F;param&gt;</span><br><span class="line">        public static string LetterWatermark(string path, int size, string letter, Color color, string location)</span><br><span class="line">        &#123;</span><br><span class="line">            #region</span><br><span class="line"></span><br><span class="line">            string kz_name &#x3D; Path.GetExtension(path);</span><br><span class="line">            if (kz_name &#x3D;&#x3D; &quot;.jpg&quot; || kz_name &#x3D;&#x3D; &quot;.bmp&quot; || kz_name &#x3D;&#x3D; &quot;.jpeg&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                DateTime time &#x3D; DateTime.Now;</span><br><span class="line">                string filename &#x3D; &quot;&quot; + time.Year.ToString() + time.Month.ToString() + time.Day.ToString() + time.Hour.ToString() + time.Minute.ToString() + time.Second.ToString() + time.Millisecond.ToString();</span><br><span class="line">                Image img &#x3D; Bitmap.FromFile(path);</span><br><span class="line">                Graphics gs &#x3D; Graphics.FromImage(img);</span><br><span class="line">                ArrayList loca &#x3D; GetLocation(location, img, size, letter.Length);</span><br><span class="line">                Font font &#x3D; new Font(&quot;宋体&quot;, size);</span><br><span class="line">                Brush br &#x3D; new SolidBrush(color);</span><br><span class="line">                gs.DrawString(letter, font, br, float.Parse(loca[0].ToString()), float.Parse(loca[1].ToString()));</span><br><span class="line">                gs.Dispose();</span><br><span class="line">                string newpath &#x3D; Path.GetDirectoryName(path) + filename + kz_name;</span><br><span class="line">                img.Save(newpath);</span><br><span class="line">                img.Dispose();</span><br><span class="line">                File.Copy(newpath, path, true);</span><br><span class="line">                if (File.Exists(newpath))</span><br><span class="line">                &#123;</span><br><span class="line">                    File.Delete(newpath);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return path;</span><br><span class="line"></span><br><span class="line">            #endregion</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 文字水印位置的方法</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;location&quot;&gt;位置代码&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;img&quot;&gt;图片对象&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;宽(当水印类型为文字时,传过来的就是字体的大小)&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;高(当水印类型为文字时,传过来的就是字符的长度)&lt;&#x2F;param&gt;</span><br><span class="line">        private static ArrayList GetLocation(string location, Image img, int width, int height)</span><br><span class="line">        &#123;</span><br><span class="line">            #region</span><br><span class="line"></span><br><span class="line">            ArrayList loca &#x3D; new ArrayList();  &#x2F;&#x2F;定义数组存储位置</span><br><span class="line">            float x &#x3D; 10;</span><br><span class="line">            float y &#x3D; 10;</span><br><span class="line"></span><br><span class="line">            if (location &#x3D;&#x3D; &quot;LT&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                loca.Add(x);</span><br><span class="line">                loca.Add(y);</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;T&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width &#x2F; 2 - (width * height) &#x2F; 2;</span><br><span class="line">                loca.Add(x);</span><br><span class="line">                loca.Add(y);</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;RT&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width - width * height;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;LC&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                y &#x3D; img.Height &#x2F; 2;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;C&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width &#x2F; 2 - (width * height) &#x2F; 2;</span><br><span class="line">                y &#x3D; img.Height &#x2F; 2;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;RC&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width - height;</span><br><span class="line">                y &#x3D; img.Height &#x2F; 2;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;LB&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                y &#x3D; img.Height - width - 5;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (location &#x3D;&#x3D; &quot;B&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width &#x2F; 2 - (width * height) &#x2F; 2;</span><br><span class="line">                y &#x3D; img.Height - width - 5;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                x &#x3D; img.Width - width * height;</span><br><span class="line">                y &#x3D; img.Height - width - 5;</span><br><span class="line">            &#125;</span><br><span class="line">            loca.Add(x);</span><br><span class="line">            loca.Add(y);</span><br><span class="line">            return loca;</span><br><span class="line"></span><br><span class="line">            #endregion</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 调整光暗</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 调整光暗</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;mybm&quot;&gt;原始图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;原始图片的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;原始图片的高度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;val&quot;&gt;增加或减少的光暗值&lt;&#x2F;param&gt;</span><br><span class="line">        public Bitmap LDPic(Bitmap mybm, int width, int height, int val)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap bm &#x3D; new Bitmap(width, height);&#x2F;&#x2F;初始化一个记录经过处理后的图片对象</span><br><span class="line">            int x, y, resultR, resultG, resultB;&#x2F;&#x2F;x、y是循环次数，后面三个是记录红绿蓝三个值的</span><br><span class="line">            Color pixel;</span><br><span class="line">            for (x &#x3D; 0; x &lt; width; x++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (y &#x3D; 0; y &lt; height; y++)</span><br><span class="line">                &#123;</span><br><span class="line">                    pixel &#x3D; mybm.GetPixel(x, y);&#x2F;&#x2F;获取当前像素的值</span><br><span class="line">                    resultR &#x3D; pixel.R + val;&#x2F;&#x2F;检查红色值会不会超出[0, 255]</span><br><span class="line">                    resultG &#x3D; pixel.G + val;&#x2F;&#x2F;检查绿色值会不会超出[0, 255]</span><br><span class="line">                    resultB &#x3D; pixel.B + val;&#x2F;&#x2F;检查蓝色值会不会超出[0, 255]</span><br><span class="line">                    bm.SetPixel(x, y, Color.FromArgb(resultR, resultG, resultB));&#x2F;&#x2F;绘图</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return bm;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 反色处理</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 反色处理</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;mybm&quot;&gt;原始图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;原始图片的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;原始图片的高度&lt;&#x2F;param&gt;</span><br><span class="line">        public Bitmap RePic(Bitmap mybm, int width, int height)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap bm &#x3D; new Bitmap(width, height);&#x2F;&#x2F;初始化一个记录处理后的图片的对象</span><br><span class="line">            int x, y, resultR, resultG, resultB;</span><br><span class="line">            Color pixel;</span><br><span class="line">            for (x &#x3D; 0; x &lt; width; x++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (y &#x3D; 0; y &lt; height; y++)</span><br><span class="line">                &#123;</span><br><span class="line">                    pixel &#x3D; mybm.GetPixel(x, y);&#x2F;&#x2F;获取当前坐标的像素值</span><br><span class="line">                    resultR &#x3D; 255 - pixel.R;&#x2F;&#x2F;反红</span><br><span class="line">                    resultG &#x3D; 255 - pixel.G;&#x2F;&#x2F;反绿</span><br><span class="line">                    resultB &#x3D; 255 - pixel.B;&#x2F;&#x2F;反蓝</span><br><span class="line">                    bm.SetPixel(x, y, Color.FromArgb(resultR, resultG, resultB));&#x2F;&#x2F;绘图</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return bm;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 浮雕处理</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 浮雕处理</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;oldBitmap&quot;&gt;原始图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;Width&quot;&gt;原始图片的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;Height&quot;&gt;原始图片的高度&lt;&#x2F;param&gt;</span><br><span class="line">        public Bitmap FD(Bitmap oldBitmap, int Width, int Height)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap newBitmap &#x3D; new Bitmap(Width, Height);</span><br><span class="line">            Color color1, color2;</span><br><span class="line">            for (int x &#x3D; 0; x &lt; Width - 1; x++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int y &#x3D; 0; y &lt; Height - 1; y++)</span><br><span class="line">                &#123;</span><br><span class="line">                    int r &#x3D; 0, g &#x3D; 0, b &#x3D; 0;</span><br><span class="line">                    color1 &#x3D; oldBitmap.GetPixel(x, y);</span><br><span class="line">                    color2 &#x3D; oldBitmap.GetPixel(x + 1, y + 1);</span><br><span class="line">                    r &#x3D; Math.Abs(color1.R - color2.R + 128);</span><br><span class="line">                    g &#x3D; Math.Abs(color1.G - color2.G + 128);</span><br><span class="line">                    b &#x3D; Math.Abs(color1.B - color2.B + 128);</span><br><span class="line">                    if (r &gt; 255) r &#x3D; 255;</span><br><span class="line">                    if (r &lt; 0) r &#x3D; 0;</span><br><span class="line">                    if (g &gt; 255) g &#x3D; 255;</span><br><span class="line">                    if (g &lt; 0) g &#x3D; 0;</span><br><span class="line">                    if (b &gt; 255) b &#x3D; 255;</span><br><span class="line">                    if (b &lt; 0) b &#x3D; 0;</span><br><span class="line">                    newBitmap.SetPixel(x, y, Color.FromArgb(r, g, b));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return newBitmap;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 拉伸图片</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 拉伸图片</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;bmp&quot;&gt;原始图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;newW&quot;&gt;新的宽度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;newH&quot;&gt;新的高度&lt;&#x2F;param&gt;</span><br><span class="line">        public static Bitmap ResizeImage(Bitmap bmp, int newW, int newH)</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                Bitmap bap &#x3D; new Bitmap(newW, newH);</span><br><span class="line">                Graphics g &#x3D; Graphics.FromImage(bap);</span><br><span class="line">                g.InterpolationMode &#x3D; System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;</span><br><span class="line">                g.DrawImage(bap, new Rectangle(0, 0, newW, newH), new Rectangle(0, 0, bap.Width, bap.Height), GraphicsUnit.Pixel);</span><br><span class="line">                g.Dispose();</span><br><span class="line">                return bap;</span><br><span class="line">            &#125;</span><br><span class="line">            catch</span><br><span class="line">            &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 滤色处理</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 滤色处理</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;mybm&quot;&gt;原始图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;原始图片的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;原始图片的高度&lt;&#x2F;param&gt;</span><br><span class="line">        public Bitmap FilPic(Bitmap mybm, int width, int height)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap bm &#x3D; new Bitmap(width, height);&#x2F;&#x2F;初始化一个记录滤色效果的图片对象</span><br><span class="line">            int x, y;</span><br><span class="line">            Color pixel;</span><br><span class="line"></span><br><span class="line">            for (x &#x3D; 0; x &lt; width; x++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (y &#x3D; 0; y &lt; height; y++)</span><br><span class="line">                &#123;</span><br><span class="line">                    pixel &#x3D; mybm.GetPixel(x, y);&#x2F;&#x2F;获取当前坐标的像素值</span><br><span class="line">                    bm.SetPixel(x, y, Color.FromArgb(0, pixel.G, pixel.B));&#x2F;&#x2F;绘图</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return bm;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 左右翻转</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 左右翻转</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;mybm&quot;&gt;原始图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;原始图片的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;原始图片的高度&lt;&#x2F;param&gt;</span><br><span class="line">        public Bitmap RevPicLR(Bitmap mybm, int width, int height)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap bm &#x3D; new Bitmap(width, height);</span><br><span class="line">            int x, y, z; &#x2F;&#x2F;x,y是循环次数,z是用来记录像素点的x坐标的变化的</span><br><span class="line">            Color pixel;</span><br><span class="line">            for (y &#x3D; height - 1; y &gt;&#x3D; 0; y--)</span><br><span class="line">            &#123;</span><br><span class="line">                for (x &#x3D; width - 1, z &#x3D; 0; x &gt;&#x3D; 0; x--)</span><br><span class="line">                &#123;</span><br><span class="line">                    pixel &#x3D; mybm.GetPixel(x, y);&#x2F;&#x2F;获取当前像素的值</span><br><span class="line">                    bm.SetPixel(z++, y, Color.FromArgb(pixel.R, pixel.G, pixel.B));&#x2F;&#x2F;绘图</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return bm;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 上下翻转</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 上下翻转</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;mybm&quot;&gt;原始图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;原始图片的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;原始图片的高度&lt;&#x2F;param&gt;</span><br><span class="line">        public Bitmap RevPicUD(Bitmap mybm, int width, int height)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap bm &#x3D; new Bitmap(width, height);</span><br><span class="line">            int x, y, z;</span><br><span class="line">            Color pixel;</span><br><span class="line">            for (x &#x3D; 0; x &lt; width; x++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (y &#x3D; height - 1, z &#x3D; 0; y &gt;&#x3D; 0; y--)</span><br><span class="line">                &#123;</span><br><span class="line">                    pixel &#x3D; mybm.GetPixel(x, y);&#x2F;&#x2F;获取当前像素的值</span><br><span class="line">                    bm.SetPixel(x, z++, Color.FromArgb(pixel.R, pixel.G, pixel.B));&#x2F;&#x2F;绘图</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return bm;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 压缩图片</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 压缩到指定尺寸</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;oldfile&quot;&gt;原文件&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;newfile&quot;&gt;新文件&lt;&#x2F;param&gt;</span><br><span class="line">        public bool Compress(string oldfile, string newfile)</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                System.Drawing.Image img &#x3D; System.Drawing.Image.FromFile(oldfile);</span><br><span class="line">                System.Drawing.Imaging.ImageFormat thisFormat &#x3D; img.RawFormat;</span><br><span class="line">                Size newSize &#x3D; new Size(100, 125);</span><br><span class="line">                Bitmap outBmp &#x3D; new Bitmap(newSize.Width, newSize.Height);</span><br><span class="line">                Graphics g &#x3D; Graphics.FromImage(outBmp);</span><br><span class="line">                g.CompositingQuality &#x3D; CompositingQuality.HighQuality;</span><br><span class="line">                g.SmoothingMode &#x3D; SmoothingMode.HighQuality;</span><br><span class="line">                g.InterpolationMode &#x3D; InterpolationMode.HighQualityBicubic;</span><br><span class="line">                g.DrawImage(img, new Rectangle(0, 0, newSize.Width, newSize.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel);</span><br><span class="line">                g.Dispose();</span><br><span class="line">                EncoderParameters encoderParams &#x3D; new EncoderParameters();</span><br><span class="line">                long[] quality &#x3D; new long[1];</span><br><span class="line">                quality[0] &#x3D; 100;</span><br><span class="line">                EncoderParameter encoderParam &#x3D; new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);</span><br><span class="line">                encoderParams.Param[0] &#x3D; encoderParam;</span><br><span class="line">                ImageCodecInfo[] arrayICI &#x3D; ImageCodecInfo.GetImageEncoders();</span><br><span class="line">                ImageCodecInfo jpegICI &#x3D; null;</span><br><span class="line">                for (int x &#x3D; 0; x &lt; arrayICI.Length; x++)</span><br><span class="line">                    if (arrayICI[x].FormatDescription.Equals(&quot;JPEG&quot;))</span><br><span class="line">                    &#123;</span><br><span class="line">                        jpegICI &#x3D; arrayICI[x]; &#x2F;&#x2F;设置JPEG编码</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                img.Dispose();</span><br><span class="line">                if (jpegICI !&#x3D; null) outBmp.Save(newfile, System.Drawing.Imaging.ImageFormat.Jpeg);</span><br><span class="line">                outBmp.Dispose();</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            catch</span><br><span class="line">            &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 图片灰度化</span><br><span class="line">        public Color Gray(Color c)</span><br><span class="line">        &#123;</span><br><span class="line">            int rgb &#x3D; Convert.ToInt32((double)(((0.3 * c.R) + (0.59 * c.G)) + (0.11 * c.B)));</span><br><span class="line">            return Color.FromArgb(rgb, rgb, rgb);</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 转换为黑白图片</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 转换为黑白图片</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;mybt&quot;&gt;要进行处理的图片&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;width&quot;&gt;图片的长度&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;height&quot;&gt;图片的高度&lt;&#x2F;param&gt;</span><br><span class="line">        public Bitmap BWPic(Bitmap mybm, int width, int height)</span><br><span class="line">        &#123;</span><br><span class="line">            Bitmap bm &#x3D; new Bitmap(width, height);</span><br><span class="line">            int x, y, result; &#x2F;&#x2F;x,y是循环次数，result是记录处理后的像素值</span><br><span class="line">            Color pixel;</span><br><span class="line">            for (x &#x3D; 0; x &lt; width; x++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (y &#x3D; 0; y &lt; height; y++)</span><br><span class="line">                &#123;</span><br><span class="line">                    pixel &#x3D; mybm.GetPixel(x, y);&#x2F;&#x2F;获取当前坐标的像素值</span><br><span class="line">                    result &#x3D; (pixel.R + pixel.G + pixel.B) &#x2F; 3;&#x2F;&#x2F;取红绿蓝三色的平均值</span><br><span class="line">                    bm.SetPixel(x, y, Color.FromArgb(result, result, result));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return bm;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        #region 获取图片中的各帧</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 获取图片中的各帧</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;pPath&quot;&gt;图片路径&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;pSavePath&quot;&gt;保存路径&lt;&#x2F;param&gt;</span><br><span class="line">        public void GetFrames(string pPath, string pSavedPath)</span><br><span class="line">        &#123;</span><br><span class="line">            Image gif &#x3D; Image.FromFile(pPath);</span><br><span class="line">            FrameDimension fd &#x3D; new FrameDimension(gif.FrameDimensionsList[0]);</span><br><span class="line">            int count &#x3D; gif.GetFrameCount(fd); &#x2F;&#x2F;获取帧数(gif图片可能包含多帧，其它格式图片一般仅一帧)</span><br><span class="line">            for (int i &#x3D; 0; i &lt; count; i++)    &#x2F;&#x2F;以Jpeg格式保存各帧</span><br><span class="line">            &#123;</span><br><span class="line">                gif.SelectActiveFrame(fd, i);</span><br><span class="line">                gif.Save(pSavedPath + &quot;\\frame_&quot; + i + &quot;.jpg&quot;, ImageFormat.Jpeg);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-SqlHelper"><a href="#3-SqlHelper" class="headerlink" title="3.SqlHelper"></a>3.SqlHelper</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Configuration;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Data;</span><br><span class="line">using System.Data.SqlClient;</span><br><span class="line">namespace CZBK.ItcastProject.DAL</span><br><span class="line">&#123;</span><br><span class="line">   public class SqlHelper</span><br><span class="line">    &#123;</span><br><span class="line">       private static readonly string connStr &#x3D; ConfigurationManager.ConnectionStrings[&quot;connStr&quot;].ConnectionString;</span><br><span class="line">       public static DataTable GetDataTable(string sql,CommandType type,params SqlParameter[]pars)</span><br><span class="line">       &#123;</span><br><span class="line">           using (SqlConnection conn &#x3D; new SqlConnection(connStr))</span><br><span class="line">           &#123;</span><br><span class="line">               using (SqlDataAdapter apter &#x3D; new SqlDataAdapter(sql, conn))</span><br><span class="line">               &#123;</span><br><span class="line">                   if (pars !&#x3D; null)</span><br><span class="line">                   &#123;</span><br><span class="line">                       apter.SelectCommand.Parameters.AddRange(pars);</span><br><span class="line">                   &#125;</span><br><span class="line">                   apter.SelectCommand.CommandType &#x3D; type;</span><br><span class="line">                   DataTable da &#x3D; new DataTable();</span><br><span class="line">                   apter.Fill(da);</span><br><span class="line">                   return da;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public static int ExecuteNonquery(string sql, CommandType type, params SqlParameter[] pars)</span><br><span class="line">       &#123;</span><br><span class="line">           using (SqlConnection conn &#x3D; new SqlConnection(connStr))</span><br><span class="line">           &#123;</span><br><span class="line">               using (SqlCommand cmd &#x3D; new SqlCommand(sql, conn))</span><br><span class="line">               &#123;</span><br><span class="line">                   if (pars !&#x3D; null)</span><br><span class="line">                   &#123;</span><br><span class="line">                       cmd.Parameters.AddRange(pars);</span><br><span class="line">                   &#125;</span><br><span class="line">                   cmd.CommandType &#x3D; type;</span><br><span class="line">                   conn.Open();</span><br><span class="line">                   return cmd.ExecuteNonQuery();</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent">
+        </div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+              target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i>
+              知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+        <div class="post-nepre half previous">
+          
+            <a href="/2018/04/25/geek_MysqlInstall/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg"
+                  style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
+                  src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+              </div>
+              <span class="label">
+                Previous Post</span>
+              <div class="info">
+                <h3>
+                  Mysql install for windows</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="post-nepre half next">
+            
+              <a href="/2018/03/25/geek_learningjava/" rel="next">
+                <div class="background">
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Commom/xiangxiang.jpg"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Commom/xiangxiang.jpg">
+                </div>
+                <span class="label">
+                  Next Post</span>
+                <div class="info">
+                  <h3>
+                    Java Notes</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz",
+        appKey: "L1bSPRMkKoL4w1KzkT85rXnl",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image"
+              alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+              <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+    </div>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Casuor<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Casuor</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Casuor" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://j.mp/35ycJAK" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/Geek/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Live/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Resource/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Thinking/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Transfer/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/Reading/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Comic/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  动漫
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Picture/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  我的盘
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="3099159214"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+
+</html>

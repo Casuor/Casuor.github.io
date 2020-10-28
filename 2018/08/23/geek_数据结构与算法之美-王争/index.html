@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">数据结构与算法之美 Notes | Casuor</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Casuor";
+  mashiro_option.author_name = "";
+  mashiro_option.site_url = "https://casuor.top";
+  mashiro_option.v_appId = "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz";
+  mashiro_option.v_appKey = "L1bSPRMkKoL4w1KzkT85rXnl";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/1.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/2.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/3.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/4.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/5.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/6.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/7.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/8.png".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body
+  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+
+  <div class="scrollbar" id="bar">
+    <!--实现换肤-->
+    <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+</div>
+<canvas id="night-mode-cover"></canvas>
+    <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> <span id="open-skinMenu"> 切换主题 | SCHEME TOOL &nbsp;<i
+                class="iconfont icon-gear inline-block rotating"></i> </span></div>
+</div>
+  </div>
+
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://casuor.top">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>The wheel turns,nothing is ever new!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/Casuor" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/github.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://j.mp/35ycJAK" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/sina.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/user/home?id=280651004" target="_blank" class="social-github" title="netease">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/neat.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/EyDBkb.io/activities" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/zhihu.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://t.me/Eyestar" target="_blank" class="social-github" title="telegram">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/Telegram.ico">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Casuor</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/Geek/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Live/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Resource/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Thinking/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Transfer/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/Reading/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Comic/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          动漫
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Picture/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          我的盘
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div class="pattern-center single-center">
+  <!-- 有配图默认渲染第一张 -->
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg);"
+    src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+  </div>
+  <header class="pattern-header single-header">
+    <h1 class="entry-title">
+      数据结构与算法之美 Notes</h1>
+    <p class="entry-census">
+      <span>
+        <a href="">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/favicon.ico">
+        </a>
+      </span>
+      <span>
+        <a href=""></a>
+      </span>
+      <span class="bull">
+        ·</span>
+      2018-8-23<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+  </header>
+</div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1"
+        class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="数据结构与算法之美-王争"><a href="#数据结构与算法之美-王争" class="headerlink" title="数据结构与算法之美-王争"></a>数据结构与算法之美-王争</h2><p>推动算法传播的是生活在美索不达米亚的AI Khwarizmi 于9世纪一本以阿拉姆语著述的教科书。</p>
+<h3 id="一、目标"><a href="#一、目标" class="headerlink" title="一、目标"></a>一、目标</h3><p><strong>什么是数据结构？什么是算法？</strong></p>
+<p>从广义上讲，数据结构就是指一组数据的存储结构。算法就是操作数据的一组方法。</p>
+<p>从狭义上讲，也就是我们专栏要讲的，是指某些著名的数据结构和算法，比如队列、栈、堆、二分<br>查找、动态规划等。这些都是前人智慧的结晶，我们可以直接拿来用。</p>
+<p><strong>数据结构与算法的关系？</strong></p>
+<p>这是因为，数据结构和算法是相辅相成的。数据结构是为算法服务的，算法要作用在特定的数据结<br>构之上。   因此，我们无法孤立数据结构来讲算法，也无法孤立算法来讲数据结构。</p>
+<blockquote>
+<p>比如，因为数组具有随机访问的特点，常用的二分查找算法需要用数组来存储数据。但如果我们选<br>择链表这种数据结构，二分查找算法就无法工作了，因为链表并不支持随机访问。</p>
+</blockquote>
+<p>数据结构是静态的，它只是组织数据的一种方式。如果不在它的基础上操作、构建算法，孤立存在<br>的数据结构就是没用的。</p>
+<p><strong>学习的重点？</strong></p>
+<p>复杂度分析</p>
+<p>数据结构和算法解决的是如何更省、更快地存储和处理数据的问题，因此，我们就需要一个考量效率和</p>
+<p>资源消耗的方法，这就是复杂度分析方法。所以，只掌握了数据结构和算法的特点、用法，但是没有学</p>
+<p>会复杂度分析，那就相当于只知道操作口诀，而没掌握心法。只有把心法了然于胸，才能做到无招胜有招！</p>
+<p><strong>常用的，基础的数据结构与算法</strong></p>
+<p> 10  个数据结构：</p>
+<p>数组、链表、栈、队列、散列表、二叉树、堆、跳表、图、 Trie  树； </p>
+<p>10个算法：</p>
+<p>递归、排序、二分查找、搜索、哈希算法、贪心算法、分治算法、回溯算法、动态规划、字符串匹配算法。</p>
+<hr>
+<h3 id="二、算法复杂度分析"><a href="#二、算法复杂度分析" class="headerlink" title="二、算法复杂度分析"></a>二、算法复杂度分析</h3><p><strong>如何分析、统计算法的执行效率和资源消耗？</strong></p>
+<p>时间、空间复杂度分析。<br><strong>为什么需要复杂度分析？</strong></p>
+<blockquote>
+<p>你可能会有些疑惑，我把代码跑一遍，通过统计、监控，就能得到算法执行的时间和占用的内存大<br>小。为什么还要做时间、空间复杂度分析呢？这种分析方法能比我实实在在跑一遍得到的数据更准<br>确吗？<br>首先，我可以肯定地说，你这种评估算法执行效率的方法是正确的。很多数据结构和算法书籍还给<br>这种方法起了一个名字，叫事后统计法。但是，这种统计方法有非常大的局限性。</p>
+</blockquote>
+<p>1.测试结果非常依赖测试环境。</p>
+<p>2.测试结果受数据规模影响很大</p>
+<p>3.大O复杂度表示法</p>
+<pre><code>int cal(int n) {
+  int sum = 0;
+  int i = 1;
+  for (; i &lt;= n; ++i) {
+    sum = sum + i;
+  }
+  return sum;
+}</code></pre><blockquote>
+<p>从  CPU  的角度来看，这段代码的每一行都执行着类似的操作：读数据 - 运算 - 写数据。尽管每行代码<br>对应的  CPU  执行的个数、执行的时间都不一样，但是，我们这里只是粗略估计，所以可以假设每<br>行代码执行的时间都一样，为  unit_time 。在这个假设的基础之上，这段代码的总执行时间是多少<br>呢？<br>第  2 、 3  行代码分别需要  1  个  unit_time  的执行时间，第  4 、 5  行都运行了  n  遍，所以需要<br>2nunit_time  的执行时间，所以这段代码总的执行时间就是  (2n+2)*unit_time 。可以看出来，所有代<br>码的执行时间  T(n)  与每行代码的执行次数成正比。</p>
+</blockquote>
+<p>按照这个分析思路，我们再来看这段代码。</p>
+<pre><code>int cal(int n) {
+  int sum = 0;
+  int i = 1;
+  int j = 1;
+  for (; i &lt;= n; ++i) {
+    j = 1;
+    for (; j &lt;= n; ++j) {
+      sum = sum +  i * j;
+    }
+  }
+}</code></pre><blockquote>
+<p>我们依旧假设每个语句的执行时间是  unit_time 。那这段代码的总执行时间  T(n)  是多少呢？<br>第  2 、 3 、 4  行代码，每行都需要  1  个  unit_time  的执行时间，第  5 、 6  行代码循环执行了  n  遍，需要</p>
+<p>2n * unit_time的执行时间，第7,8行执行了n^2遍，所以需要2n^2*unit_time的执行时间。所以整段代码执行时间</p>
+<p>T(n)=(2n^2+2n+3)*unit_time.</p>
+<p>尽管我们不知道  unit_time  的具体值，但是通过这两段代码执行时间的推导过程，我们可以得到一<br>个非常重要的规律，那就是，所有代码的执行时间  T(n)  与每行代码的执行次数  n  成正比。<br>我们可以把这个规律总结成一个公式。</p>
+<p>大O记号</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190511161143.png" alt=""></p>
+</blockquote>
+<blockquote>
+<p>其中， T(n)表示代码执行的时间； n  表示数据规模的大小； f(n)  表示每行代码执行的次数总和。因为这是一个公式，所以用  f(n)  来表示。公式中的O ，表示代码的执行时间  T(n)  与  f(n)  表达式成正比。<br>所以，第一个例子中的  T(n) = O(2n+2) ，第二个例子中的  T(n) = O(2n +2n+3) 。</p>
+<p>这就是大  O  时间复杂度表示法。</p>
+<p>大  O  时间复杂度实际上并不具体表示代码真正的执行时间，而是表示代码执行时间随数据规模增长的变化趋势，所以，也叫作渐进时间复杂度（ asymptotic time complexity ），简称时间复杂度。<br>当  n  很大时，你可以把它想象成  10000 、 100000 。而公式中的低阶、常量、系数三部分并不左右增<br>长趋势，所以都可以忽略。我们只需要记录一个最大量级就可以了，如果用大  O  表示法表示刚讲的<br>那两段代码的时间复杂度，就可以记为： T(n) = O(n) ；  T(n) = O(n ) 。</p>
+</blockquote>
+<p><strong>时间复杂度分析</strong><br>如何分析一段代码的时间复杂度？有三个比较实用的方法。</p>
+<ol>
+<li>只关注循环执行次数最多的一段代码<br>大  O  这种复杂度表示方法只是表示一种变化趋势。我们通常会忽略掉公式中的常量、低阶、系数，只需要记录一个最大阶的量级就可以了。所以，我们<em>在分析一个算法、一段代码的时间复杂度的时候，也只关注循环执行次数最多的那一段代码就可以了</em>。这段核心代码执行次数的  n的量级，就是整段要分析代码的时间复杂度。</li>
+</ol>
+<p>那前面的第一个例子来说，其中第  2 、 3  行代码都是常量级的执行时间，与  n  的大小无关，所以对于复杂度并没有影响。循环执行次数最多的是第  4 、 5  行代码，所以这块代码要重点分析。前面我们也讲过，这两行代码被执行了  n  次，所以总的时间复杂度就是  O(n)</p>
+<ol start="2">
+<li>加法法则：总复杂度等于量级最大的那段代码的复杂度</li>
+</ol>
+<pre><code>//前100个数相加
+int cal(int n) {
+  int sum_1 = 0;
+  int p = 1;
+  for (; p &lt; 100; ++p) {
+    sum_1 = sum_1 + p;
+  }
+  //前n个数  
+  int sum_2 = 0;
+  int q = 1;
+  for (; q &lt; n; ++q) {
+    sum_2 = sum_2 + q;
+  }
+//
+  int sum_3 = 0;
+  int i = 1;
+  int j = 1;
+  for (; i &lt;= n; ++i) {
+    j = 1; 
+    for (; j &lt;= n; ++j) {
+      sum_3 = sum_3 +  i * j;
+    }
+  }
+
+  return sum_1 + sum_2 + sum_3;
+}</code></pre><blockquote>
+<p>这个代码分为三部分，分别是求  sum_1 、 sum_2 、 sum_3 。我们可以分别分析每一部分的时间复杂<br>度，然后把它们放到一块儿，再取一个量级最大的作为整段代码的复杂度。</p>
+<p>第一段的时间复杂度是多少呢？这段代码循环执行了  100  次，所以是一个常量的执行时间，跟  n  的<br>规模无关。<br>这里我要再强调一下，即便这段代码循环  10000  次、 100000  次，只要是一个已知的数，跟  n  无<br>关，照样也是常量级的执行时间。当  n  无限大的时候，就可以忽略。尽管对代码的执行时间会有很<br>大影响，但是<strong>回到时间复杂度的概念来说，它表示的是一个算法执行效率与数据规模增长的变化趋</strong><br><strong>势，所以不管常量的执行时间多大，我们都可以忽略掉。</strong>因为它本身对增长趋势并没有影响。<br>那第二段代码和第三段代码的时间复杂度是多少呢？答案是  O(n)  和  O(n )。</p>
+<p>综合三段代码的时间复杂度，我们取最大的量级，即总的复杂度为O(n^2)</p>
+<p>也就是说：总的时间复杂度就等于量级最大的那段代码的时间复杂度。那我们将这个规律抽<br>象成公式就是：<br>如果  T1(n)=O(f(n)) ， T2(n)=O(g(n)) ；那么  T(n)=T1(n)+T2(n)=max(O(f(n)), O(g(n))) =O(max(f(n),g(n))).</p>
+</blockquote>
+<p>3.乘法法则：嵌套代码的复杂度等于嵌套内外复杂度的乘积。</p>
+<p>如果T1(n)=O(f(n)），T2(n)=O(g(n))；</p>
+<p>那么T（n）=T1（n）xT2（n）=O(f(n))xO(g(n))=O(f(n)xg(n)).<br>也就是说，假设T1（n）=O（n），T2（n）=O（n^2），则T1（n）xT2（n）=O（n^3）。</p>
+<p>落实到具体的代码上</p>
+<pre><code>int cal(int n) {
+  int ret = 0; 
+  int i = 1;
+  for (; i &lt; n; ++i) {
+    ret = ret + f(i);
+  } 
+} 
+
+int f(int n) {
+  int sum = 0;
+  int i = 1;
+  for (; i &lt; n; ++i) {
+    sum = sum + i;
+  } 
+  return sum;
+}</code></pre><p>我们单独看cal（）函数。假设f()只是一个普通的操作，那第4~6行的时间复杂度就是，T1(n)=O(n)。</p>
+<p>但f()函数本身不是一个简单的操作，它的时间复杂度是T2(n)=O(n)，所以，整个cal）函数的时间复杂度就是，T(n)=T1(n)xT2(n)=O(nxn)=O（n2）。</p>
+<p><strong>常见的时间复杂度实例分析</strong></p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190511172431.png" alt=""></p>
+<p><strong>分类：</strong></p>
+<p>多项式量级：</p>
+<p>非多项式量级：O(2n)和O(n!)。</p>
+<p>我们把复杂度为非多项式量级的算法问题叫做NP(Non-Deterministic Polynomial,非确定多项式)问题。</p>
+<p>当数据规模n越来越大时，非多项式量级算法的执行时间会急剧增加，求解问题的执行时间会无限增长。所以，非多项式时间复杂度的算法其实是非常低效的算法。因此，关于NP时间复杂度问题略。</p>
+<p>主要来看几种常见的多项式时间复杂度。</p>
+<p><strong>1.O(1)</strong></p>
+<p>常量级时间复杂度的一种表示方法，并不是指执行了一行代码。比如这段代码，即便有  3  行，它的时间复杂度也是  O(1 ），而不是  O(3) 。</p>
+<pre><code>int i = 8;
+int j = 6;
+int sum = i + j;</code></pre><p>由此，只要代码的执行时间不随  n  的增大而增长，这样代码的时间复杂度我们都记作O(1) 。或者说，一般情况下，只要算法中不存在循环语句、递归语句，即使有成千上万行的代码，其时间复杂度也是 Ο(1)。</p>
+<p><strong>2.O(logn),O(nlogn)</strong></p>
+<pre><code>i=1;
+while (i &lt;= n)  {
+  i = i * 2;
+}</code></pre><p>根据我们前面讲的复杂度分析方法，第三行代码是循环执行次数最多的。所以，我们只要能计算出这行代码被执行了多少次，就能知道整段代码的时间复杂度。<br>从代码中可以看出，变量  i  的值从  1  开始取，每循环一次就乘以  2 。当大于  n  时，循环结束。还记得我们高中学过的等比数列吗？实际上，变量  i  的取值就是一个等比数列。如果我把它一个一个列出来，就应该是这个样子的：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190512170005.png" alt=""></p>
+<p>所以，我们只要知道  x  值是多少，就知道这行代码执行的次数了。通过  2^x=n,则 x=log2n ，所以，这段代码的时间复杂度就是  O(log2n) 。<br>现在，我把代码稍微改下，你再看看，这段代码的时间复杂度是多少？</p>
+<pre><code>i=1;
+while (i &lt;= n)  {
+  i = i * 3;
+}</code></pre><p>由上得出这段代码的复杂度为O(log3n) 。</p>
+<p>实际上，不管是以  2  为底、以  3  为底，还是以  10  为底，我们可以把所有对数阶的时间复杂度都记<br>为  O(logn)。</p>
+<p>我们知道，对数之间是可以互相转换的，log3n就等于log32xlog2n，所以O(log3n)=O(C<em>log2n），其中C=log32是一个常量。基于我们前面的一个理论：*</em>在采用大O标记复杂度的时候，可以忽略系数**，即O(Cf(n)=O(f(n))。所以，O（log2n）就等于O（log3n）。因此，在对数阶时间复杂度的表示方法里，我们忽略对数的“底”，统一表示为O（logn）。<br>如果你理解了我前面讲的O（logn），那O（nlogn）就很容易理解了。还记得我们刚讲的乘法法则吗？<br>如果一段代码的时间复杂度是O(logn)，我们循环执行n遍，时间复杂度就是O（nlogn）了。而且，O（nlogn）也是一种非常常见的算法时间复杂度。比如，归并排序、快速排序的时间复杂度都是O（nlogn）。</p>
+<p><strong>3.O(m+n),O(m*n)</strong></p>
+<p>这种情况代码的复杂度由两个数据的规模来决定。</p>
+<pre><code>int cal(int m, int n) {
+  int sum_1 = 0;
+  int i = 1;
+  for (; i &lt; m; ++i) {
+    sum_1 = sum_1 + i;
+  }
+  int sum_2 = 0;
+  int j = 1;
+  for (; j &lt; n; ++j) {
+    sum_2 = sum_2 + j;
+  }
+  return sum_1 + sum_2;
+}</code></pre><p>从代码中可以看出， m  和  n  是表示两个数据规模。我们无法事先评估  m  和  n  谁的量级大，所以我们在表示复杂度的时候，就不能简单地利用加法法则，省略掉其中一个。所以，上面代码的时间复杂度就是  O(m+n) 。<br>针对这种情况，原来的加法法则就不正确了，我们需要将加法规则改为： T1(m) + T2(n) = O(f(m) +<br>g(n)) 。但是乘法法则继续有效： T1(m)*T2(n) = O(f(m) * f(n)) 。</p>
+<p><strong>空间复杂度分析</strong></p>
+<p>时间复杂度的全称是渐进时间复杂度，表示算法的执行时间与数据规模之间的增长关系。类比一下，空间复杂度全称就是渐进空间复杂度（ asymptotic space complexity ），<strong>表示算法的存储空间与数据规模之间的增长关系。</strong></p>
+<pre><code>void print(int n) {
+  int i = 0;
+  int[] a = new int[n];
+  for (i; i &lt;n; ++i) {
+  a[i] = i * i;
+  }
+  for (i = n-1; i &gt;= 0; --i) {
+  print out a[i]
+}
+}</code></pre><p><strong>跟时间复杂度分析一样，我们可以看到，第  2  行代码中，我们申请了一个空间存储变量  i ，但是它是</strong><br><strong>常量阶的，跟数据规模  n  没有关系，所以我们可以忽略。第  3  行申请了一个大小为  n  的  int  类型数</strong><br><strong>组，除此之外，剩下的代码都没有占用更多的空间，所以整段代码的空间复杂度就是  O(n)。</strong></p>
+<p>常见空间复杂度： O(1) 、 O(n)、 O(n^2)</p>
+<p><strong>小结：</strong></p>
+<p>复杂度也叫渐进复杂度，包括时间复杂度和空间复杂度，用来分析算法执行效率与数据规模之间的<br>增长关系，可以粗略地表示，越高阶复杂度的算法，执行效率越低。</p>
+<p>复杂度分析法则<br>1 ）单段代码看高频：比如循环。<br>2 ）多段代码取最大：比如一段代码中有单循环和多重循环，那么取多重循环的复杂度。<br>3 ）嵌套代码求乘积：比如递归、多重循环等<br>4 ）多个规模求加法：比如方法有两个参数控制两个循环的次数，那么这时就取二者复杂度相加。<br>常用的复杂度级别？<br>多项式阶：随着数据规模的增长，算法的执行时间和空间占用，按照多项式的比例增长。包括，<br>O(1) （常数阶）、 O(logn) （对数阶）、 O(n) （线性阶）、 O(nlogn) （线性对数阶）、 O(n^2) （平<br>方阶）、 O(n^3) （立方阶）<br>非多项式阶：随着数据规模的增长，算法的执行时间和空间占用暴增，这类算法性能极差。包括，<br>O(2^n) （指数阶）、 O(n!)</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190512173408.png" alt=""></p>
+<p><strong>最好最坏及平均时间复杂度</strong></p>
+<pre><code>// n  表示数组  array  的长度
+int find(int[] array, int n, int x) {
+  int i = 0;
+  int pos = -1;
+  for (; i &lt; n; ++i) {
+    if (array[i] == x) 
+        pos = i;
+  }
+  return pos;
+}</code></pre><p>这段代码的功能是：长度为n的数组中，返回等于x的数组元素的下标，不等于则返回-1</p>
+<p>缺点：全部元素遍历，不够高效</p>
+<p>时间复杂度：O(n)</p>
+<pre><code>// n  表示数组  array  的长度
+int find(int[] array, int n, int x) {
+  int i = 0;
+  int pos = -1;
+  for (; i &lt; n; ++i) {
+    if (array[i] == x) {
+      pos = i;
+      break;
+    }
+  }
+  return pos;
+}</code></pre><p>优化后时间复杂度则由x出现的位置决定。最好第一个元素，最差最后一个元素。</p>
+<p>最好情况时间复杂度和最坏情况时间复杂度对应的都是极端情况下的代码复杂度，发生的概率其实并不大。为了更好地表示平均情况下的复杂度，需要引入另一个概念：平均情况时间复杂度，后面我简称为平均时间复杂度。</p>
+<p>例：</p>
+<p>要查找的变量  x  在数组中的位置，有  n+1  种情况：在数组的  0 ～ n-1  位置中和不在数组中。我们把每种情况下，查找需要遍历的元素个数累加起来，然后再除以  n+1 ，就可以得到需要遍历的元素个数的平均值，</p>
+<p>即：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190513220835.png" alt=""></p>
+<p>由大O记号表示可知，可以省略掉系数，低阶，常量，所以简化后的时间复杂度为O(n).</p>
+<p>这个结论虽然是正确的，但是计算过程稍微有点儿问题。刚讲的这  n+1  种情况，出现的概率并不是一样的。我们知道，要查找的变量  x ，要么在数组里，要么就不在数组里。这两种情况对应的概率统计起来很麻烦，为了方便理解，我们假设在数组中与不在数组中的概率都为  1/2 。另外，要查找的数据出现在  0 ～ n-1  这  n  个位置的概率也是一样的，为  1/n 。所以，根据概率乘法法则，要查找的数据出现在  0 ～ n-1  中任意位置的概率就是 1/(2n).</p>
+<p>因此，前面的推导过程中存在的最大问题就是，没有将各种情况发生的概率考虑进去。如果我们把每种情况发生的概率也考虑进去，那平均时间复杂度的计算过程就变成了这样：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190513221805.png" alt=""></p>
+<p>这个值就是概率论中的加权平均值，也叫作期望值，所以平均时间复杂度的全称应该叫加权平均时间复杂度或者期望时间复杂度。<br>引入概率之后，前面那段代码的加权平均值为  (3n+1)/4 。用大  O  表示法来表示，去掉系数和常量，这段代码的加权平均时间复杂度仍然是  O(n) 。</p>
+<p>由上可得：不是所有情况都要进行最好，最糟或平均时间复杂度的分析，量级相差较大时才进行区别。</p>
+<p><strong>均摊时间复杂度</strong></p>
+<p>例子：</p>
+<pre><code>// array  表示一个长度为  n  的数组
+//  代码中的  array.length  就等于  n
+int[] array = new int[n];
+int count = 0;
+
+void insert(int val) {
+    if (count == array.length) {
+      int sum = 0;
+      for (int i = 0; i &lt; array.length; ++i) {
+          sum = sum + array[i];
+      }
+      array[0] = sum;
+      count = 1;
+    }
+    array[count] = val;
+    ++count;
+}</code></pre><p>代码功能：</p>
+<p>往数组中插入数据的功能。</p>
+<p>当数组满了之后，也就是代码中的  count == array.length  时，我们用  for  循环遍历数组求和，并清空数组，将求和之后的sum  值放到数组的第一个位置，然后再将新的数据插入。但如果数组一开始就有空闲空间，则直接将数据插入数组。<br>最理想的情况下，数组中有空闲空间，我们只需要将数据插入到数组下标为  count  的位置就可以了，所以最好情况时间复杂度为  O(1) 。最坏的情况下，数组中没有空闲空间了，我们需要先做一次数组的遍历求和，然后再将数据插入，所以最坏情况时间复杂度为  O(n)。</p>
+<p>平均复杂度分析：</p>
+<p>假设数组的长度是  n ，根据数据插入的位置的不同，我们可以分为  n  种情况，每种情况的时间复杂度是  O(1) 。除此之外，还有一种 “ 额外 ” 的情况，就是在数组没有空闲空间时插入一个数据，这个时候的时间复杂度是  O(n) 。而且，这  n+1  种情况发生的概率一样，都是  1/(n+1) 。所以，根据加权平均的计算方法，我们求得的平均时间复杂度就是：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190513224321.png" alt=""></p>
+<p>这个例子不需要引入概率论的知识。这是为什么呢？我们先来对比一下这个  insert()  的例子和前面那个  find()  的例子，你就会发现这两者有很大差别。<br>首先， find()  函数在极端情况下，复杂度才为  O(1) 。但  insert()  在大部分情况下，时间复杂度都为O(1) 。只有个别情况下，复杂度才比较高，为  O(n) 。这是  insert() 第一个区别于  find()  的地方。<br>第二个不同的地方，对于  insert()  函数来说， O(1)  时间复杂度的插入和  O(n)  时间复杂度的插入，出现的频率是非常有规律的，而且有一定的前后时序关系，一般都是一个  O(n)  插入之后，紧跟着  n-1  个  O(1)  的插入操作，循环往复。<br>所以，针对这样一种特殊场景的复杂度分析，我们并不需要像之前讲平均复杂度分析方法那样，找出所有的输入情况及相应的发生概率，然后再计算加权平均值。</p>
+<p>因此引入了摊还分析法，通过摊还分析得到的时间复杂度叫做均摊时间复杂度。</p>
+<p><strong>具体怎样使用摊还分析法分析算法的均摊时间复杂度？</strong></p>
+<p>我们还是继续看在数组中插入数据的这个例子。每一次  O(n)  的插入操作，都会跟着  n-1  次  O(1)  的插入操作，所以把耗时多的那次操作均摊到接下来的  n-1  次耗时少的操作上，均摊下来，这一组连续的操作的均摊时间复杂度就是  O(1) 。这就是均摊分析的大致思路。<br>均摊时间复杂度和摊还分析应用场景比较特殊，所以我们并不会经常用到。</p>
+<p><strong>应用场景</strong></p>
+<p>对一个数据结构进行一组连续操作中，大部分情况下时间复杂度都很低，只有个别情况下时间复杂<br>度比较高，而且这些操作之间存在前后连贯的时序关系，这个时候，我们就可以将这一组操作放在<br>一块儿分析，看是否能将较高时间复杂度那次操作的耗时，平摊到其他那些时间复杂度比较低的操<br>作上。而且，在能够应用均摊时间复杂度分析的场合，一般均摊时间复杂度就等于最好情况时间复<br>杂度。</p>
+<p>一、复杂度分析的 4 个概念</p>
+<p>最好情况时间复杂度：代码在最理想情况下执行的时间复杂度。</p>
+<p>最坏情况时间复杂度：代码在最坏情况下执行的时间复杂度。</p>
+<p>平均时间复杂度：用代码在所有情况下执行的次数的加权平均值表示。</p>
+<p>均摊时间复杂度：在代码执行的所有复杂度情况中绝大部分是低级别的复杂度，个别情况是高级<br>别复杂度且发生具有时序关系时，可以将个别高级别复杂度均摊到低级别复杂度上。基本上均摊结<br>果就等于低级别复杂度。</p>
+<p>二、为什么要引入这 4 个概念？</p>
+<ol>
+<li>同一段代码在不同情况下时间复杂度会出现量级差异，为了更全面，更准确的描述代码的时间复<br>杂度，所以引入这 4 个概念。</li>
+<li>代码复杂度在不同情况下出现量级差别时才需要区别这四种复杂度。大多数情况下，是不需要区<br>别分析它们的。</li>
+</ol>
+<p>三、</p>
+<ol>
+<li><p>平均时间复杂度<br> 代码在不同情况下复杂度出现量级差别，则用代码所有可能情况下执行次数的加权平均值表示。</p>
+</li>
+<li><p>均摊时间复杂度<br> 两个条件满足时使用：</p>
+<p>1 ）代码在绝大多数情况下是低级别复杂度，只有极少数情况是高级别复杂度； </p>
+<p>  2 ）低级别和高级别复杂度出现具有时序规律。均摊结果一般都等于低级别复杂度。</p>
+</li>
+</ol>
+<p><strong>习题</strong></p>
+<pre><code>//  全局变量，大小为  10  的数组  array ，长度  len ，下标  i 。
+int array[] = new int[10]; 
+int len = 10;
+int i = 0;
+//  往数组中添加一个元素
+void add(int element) {
+  if (i &gt;= len) { //  数组空间不够了
+    //  重新申请一个  2  倍大小的数组空间
+    int new_array[] = new int[len*2];
+    //  把原来  array  数组中的数据依次  copy  到  new_array
+    for (int j = 0; j &lt; len; ++j) {
+      new_array[j] = array[j];
+    }
+    // new_array  复制给  array ， array  现在大小就是  2  倍  len  了
+    array = new_array;
+    len = 2 * len;
+  }
+  //  将  element  放到下标为  i  的位置，下标  i  加一
+  array[i] = element;
+  ++i;
+}</code></pre><p>线性表：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190521161401.png" alt=""></p>
+<p>非线性表：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190521162302.png" alt=""></p>
+<p><strong>数组</strong></p>
+<p>1、存储结构：链式存储，前驱后继关联</p>
+<p>2、操作：</p>
+<p>crud(前后索引关联，涉及最优最糟问题)</p>
+<p>特点：非常低效</p>
+<p>查询操作：</p>
+<p>了解其存储方式，即查询就是通过数组下标进行。</p>
+<p>插入操作：</p>
+<blockquote>
+<p>假设数组的长度为n，现在，如果我们需要将一个数据插入到数组中的第k个位置。为了把第k个位置腾出来，给新来的数据，我们需要将第k~n这部分的元素都顺序地往后挪一位。那插入操作的时间复杂度是多少呢？</p>
+<p>如果在数组的末尾插入元素，那就不需要移动数据了，这时的(最优)时间复杂度为O（1）。但如果在数组的开头插入元素，那所有的数据都需要依次往后移动一位，所以<strong>最坏时间复杂度</strong>是O（n）。因为我们在每个位置插入元素的概率是一样的，所以平均情况时间复杂度为（1+2+.n）/n=O（n）。</p>
+</blockquote>
+<blockquote>
+<p>如果数组中的数据是有序的，我们在某个位置插入一个新的元素时，就必须按照刚才的方法搬移k之后的数据。但是，<strong>如果数组中存储的数据并没有任何规律，数组只是被当作一个存储数据的集合。在这种情况下，如果要将某个数组插入到第k个位置，为了避免大规模的数据搬移，我们还有一个简单的办法就是，直接将第k位的数据搬移到数组元素的最后，把新的元素直接放入第k个位置。</strong></p>
+<p>例：</p>
+<p>假设数组a[10]中存储了如下5个元素：a，b，c，d，e。我们现在需要将元素X插入到第3个位置。我们只需要将c放入到a[5]，将a[2]赋值为X即可。最后，数组中的元素如下：a，b，x，d，e，c。</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190521172005.png" alt=""></p>
+</blockquote>
+<p>删除操作：</p>
+<blockquote>
+<p>跟插入数据类似，如果我们要删除第k个位置的数据，为了内存的连续性，也需要搬移数据，不然中间就会出现空洞，内存就不连续了。<br>和插入类似，如果删除数组末尾的数据，则最好情况时间复杂度为O（1）；如果删除开头的数据，则最坏情况时间复杂度为O（n）；平均情况时间复杂度也为O（n）。</p>
+</blockquote>
+<blockquote>
+<p>实际上，在某些特殊场景下，我们并不一定非得追求数组中数据的连续性。如果我们将多次删除操作集中在一起执行，删除的效率是不是会提高很多呢？<br>例：</p>
+<p>数组a[1]中存储了8个元素：a，b，c，d，e，f，g，h。现在，我们要依次删除a，b，c三个元素。</p>
+<p>为了避免d，e，f，g，h这几个数据会被搬移三次，我们可以先记录下已经删除的数据。每次的删除操作并不是真正地搬移数据，只是记录数据已经被删除。当数组没有更多空间存储数据时，我们再触发执行一次真正的删除操作，这样就大大减少了删除操作导致的数据搬移。</p>
+</blockquote>
+<p>访问数组越界问题：</p>
+<p>即访问数组以外的资源；</p>
+<p>容器能否完全替代数组？</p>
+<blockquote>
+<p>针对数组类型，很多语言都提供了容器类，比如Java中的Arraylist、C++STL中的ector。在项目开发中，什么时候适合用数组，什么时候适合用容器呢？<br>ArrayList与数组相比，有哪些优势呢？<br>ArrayList的优势就是可以将很多数组操作的细节封装起来。比如前面提到的数组插入、删除数据时需要搬移其他数据等。另外，它还有一个优势，就是支持动态扩容。<br>数组本身在定义的时候需要预先指定大小，因为需要分配连续的内存空间。如果我们申请了大小为10的组，当第11个数据需要存储到数组中时，我们就需要重新分配一块更大的空间，将原来的数据复制过去，然后再将新的数据插入。</p>
+<p>注意<br>因为扩容操作涉及内存申请和数据搬移，是比较耗时的。所以，如果事先能确定需要存储的数据大小，最好在创建ArrayList的时候事先指定数据大小。</p>
+<p>例：</p>
+</blockquote>
+<pre><code>ArrayList&lt;User&gt; users = new ArrayList(10000);
+for (int i = 0; i &lt; 10000; ++i) {
+  users.add(xxx);
+}</code></pre><blockquote>
+<p>1.Java Arraylist无法存储基本类型，比如int、long，需要封装为Integer、Long类，而Autoboxing、Unboxing则有一定的性能消耗，所以如果特别关注性能，或者希望使用基本类型，就可以选用数组。<br>2.如果数据大小事先已知，并且对数据的操作非常简单，用不到ArrayList提供的大部分方法，也可以直接使用数组。<br>3.还有一个是我个人的喜好，当要表示多维数组时，用数组往往会更加直观。比如Object[][] array；而用容器的话则需要这样定义：ArrayList<ArrayList>array。</p>
+</blockquote>
+<p>数组下标问题：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190521180349.png" alt=""></p>
+<p><strong>链表：</strong></p>
+<p>如何实现LRU缓存算法？</p>
+<p>缓存是一种提高数据读取性能的技术，在硬件设计、软件开发中都有着非常广泛的应用，比如常见的CPU缓存、数据库缓存、浏览器缓存等等。</p>
+<p>缓存的大小有限，当缓存被用满时，哪些数据应该被清理出去，哪些数据应该被保留？这就需要缓存淘汰策略来决定。常见的策略有三种：</p>
+<p>先进先出策略FIFO（First In，First Out）</p>
+<p>最少使用策略LFU（Least Frequently Used）</p>
+<p>最近最少使用策略LRU（Least Recently Used）。</p>
+<p>数组与链表的存储结构：</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190522192439.png" alt=""></p>
+<p><strong>单链表：</strong></p>
+<p>特点：索引串联存储，除了存储数据外，还需存储下一节点的索引，头尾相连，最后一个元素指向空</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190522192803.png" alt=""></p>
+<p>插入删除操作</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190522193530.png" alt=""></p>
+<p>查找操作</p>
+<p>链表要想随机访问第k个元素，就没有数组那么高效了。因为链表中的数据并非连续存储的，所以无法像数组那样，根据首地址和下标，通过寻址公式就能直接计算出对应的内存地址，而是需要根据指针一个结点一个结点地依次遍历，直到找到相应的结点。需要O（n）的时间复杂度。</p>
+<p><strong>循环链表</strong></p>
+<p>特点：同单链表，不同在于尾节点指向起始头节点。</p>
+<p>优点：任意节点出发的操作，而不用从头开始。</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190522202553.png" alt=""></p>
+<p><strong>约瑟夫环问题</strong></p>
+<p>算法原理：</p>
+<blockquote>
+<p>约瑟夫环运作如下：</p>
+<p>1、一群人围在一起坐成 [2]  环状（如：N）</p>
+<p>2、从某个编号开始报数（如：K）</p>
+<p>3、数到某个数（如：M）的时候，此人出列，下一个人重新报数</p>
+<p>4、一直循环，直到所有人出列 [3]  ，约瑟夫环结束</p>
+<p>自己写了一个：<a href="https://www.cnblogs.com/fenqinearl/p/10910441.html" target="_blank" rel="noopener">普通</a></p>
+<p>看了下递归算法，还有待研究</p>
+<p>优质推荐：<a href="https://blog.csdn.net/never_cxb/article/details/49660191" target="_blank" rel="noopener">应有尽有</a></p>
+</blockquote>
+<p><strong>双向链表</strong></p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190523202501.png" alt=""></p>
+<p>节点结构：前驱指针域    数据域    后继指针域</p>
+<p>特点：</p>
+<p>双向链表需要额外的两个空间来存储后继结点和前驱结点的地址。所以，如果存储同样多的数据，双向链表要比单链表占用更多的内存空间。虽然两个指针比较浪费存储空间，但可以支持双向遍历，这样也带来了双向链表操作的灵活性。</p>
+<p>常见删除操作：</p>
+<p><strong>删除结点中“值等于某个给定值”的结点；</strong><br><strong>删除给定指针指向的结点。</strong></p>
+<p>对于第一种情况，不管是单链表还是双向链表，为了查找到值等于给定值的结点，都需要从头结点开始一个一个依次遍历对比，直到找到值等于给定值的结点，然后再通过我前面讲的指针操作将其删除。<br>尽管单纯的删除操作时间复杂度是O（1），但遍历查找的时间是主要的耗时点，对应的时间复杂度为O（n）。根据时间复杂度分析中的加法法则，删除值等于给定值的结点对应的链表操作的总时间复杂度为O（n）。<br>对于第二种情况，我们已经找到了要删除的结点，但是删除某个结点q需要知道其前驱结点，而单链表并不支持直接获取前驱结点，所以，为了找到前驱结点，我们还是要从头结点开始遍历链表，直到p-&gt;next=q，说明p是q的前驱结点。<br>但是对于双向链表来说，这种情况就比较有优势了。因为双向链表中的结点已经保存了前驱结点的指针，不需要像单链表那样遍历。所以，针对第二种情况，单链表删除操作需要O（n）的时间复杂度，而双向链表只需要在O（1）的时间复杂度内就搞定了！</p>
+<p>同理，如果我们希望在链表的某个指定结点前面插入一个结点，双向链表比单链表有很大的优势。<br>双向链表可以在O（1）时间复杂度搞定，而单向链表需要O（n）的时间复杂度。<br>除了插入、删除操作有优势之外，对于一个有序链表，双向链表的按值查询的效率也要比单链表高一些。因为，我们可以记录上次查找的位置p，每次查询时，根据要查找的值与p的大小关系，决定是往前还是往后查找，所以平均只需要查找一半的数据。<br>现在，你有没有觉得双向链表要比单链表更加高效呢？这就是为什么在实际的软件开发中，双向链表尽管比较费内存，但还是比单链表的应用更加广泛的原因。如果你熟悉Java语言，你肯定用过LinkedHashMap这个容器。如果你深入研究LinkedHashMap的实现原理，就会发现其中就用到了双向链表这种数据结构。<br>实际上，这里有一个更加重要的知识点需要你掌握，那就是用空间换时间的设计思想。当内存空间充足的时候，如果我们更加追求代码的执行速度，我们就可以选择空间复杂度相对较高、但时间复杂度相对很低的算法或者数据结构。相反，如果内存比较紧缺，比如代码跑在手机或者单片机上，这个时候，就要反过来用时间换空间的设计思路。</p>
+<p>还是开篇缓存的例子。缓存实际上就是利用了空间换时间的设计思想。如果我们把数据存储在硬盘上，会比较节省内存，但每次查找数据都要询问一次硬盘，会比较慢。但如果我们通过缓存技术，事先将数据加载在内存中，虽然会比较耗费内存空间，但是每次数据查询的速度就大大提高了。所以我总结一下，<strong>对于执行较慢的程序，可以通过消耗更多的内存（空间换时间）来进行优化；而消耗过多内存的程序，可以通过消耗更多的时间（时间换空间）来降低内存的消耗</strong>。你还能想到其他时间换空间或者空间换时间的例子吗？<br>了解了循环链表和双向链表，如果把这两种链表整合在一起就是一个新的版本：<strong>双向循环链表</strong>。我想不用我多讲，你应该知道双向循环链表长什么样子了吧？你可以自己试着在纸上画一画。</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190523205433.png" alt=""></p>
+<p>链表与数组性能比较</p>
+<p><img src="https://raw.githubusercontent.com/FenQingyang/Ey_PicBed/master/Images/.Net%E5%BC%80%E5%8F%9120190523211010.png" alt=""></p>
+<blockquote>
+<p>不过，数组和链表的对比，并不能局限于时间复杂度。而且，在实际的软件开发中，不能仅仅利用复杂度分析就决定使用哪个数据结构来存储数据。<br>数组简单易用，在实现上使用的是连续的内存空间，可以借助CPU的缓存机制，预读数组中的数据，所以访问效率更高。而链表在内存中并不是连续存储，所以对CPU缓存不友好，没办法有效预读。<br>数组的缺点是大小固定，一经声明就要占用整块连续内存空间。如果声明的数组过大，系统可能没有足够的连续内存空间分配给它，导致“内存不足（out of memory）”。如果声明的数组过小，则可能出现不够用的情况。这时只能再申请一个更大的内存空间，把原数组拷贝进去，非常费时。链表本身没有大小的限制，天然地支持动态扩容，我觉得这也是它与数组最大的区别。<br>你可能会说，我们Java中的ArayList容器，也可以支持动态扩容啊？我们上一节课讲过，当我们往支持动态扩容的数组中插入一个数据时，如果数组中没有空闲空间了，就会申请一个更大的空间，将数据拷贝过去，而数据拷贝的操作是非常耗时的。<br>我举一个稍微极端的例子。如果我们用ArrayList存储了了1GB大小的数据，这个时候已经没有空闲空间了，当我们再插入数据的时候，Arraylist会申请一个1.5GB大小的存储空间，并且把原来那1GB的数据拷贝到新申请的空间上。听起来是不是就很耗时？</p>
+<p>除此之外，如果你的代码对内存的使用非常苛刻，那数组就更适合你。因为链表中的每个结点都需要消耗额外的存储空间去存储一份指向下一个结点的指针，所以内存消耗会翻倍。而且，对链表进行频繁的插入、删除操作，还会导致频繁的内存申请和释放，容易造成内存碎片，如果是Java语言，就有可能会导致频繁的GC（Garbage Collection，垃圾回收）。<br>所以，在我们实际的开发中，针对不同类型的项目，要根据具体情况，权衡究竟是选择数组还是链表。</p>
+</blockquote>
+<p>解答开篇<br>好了，关于链表的知识我们就讲完了。我们现在回过头来看下开篇留给你的思考题。如何基于链表实现LRU缓存淘汰算法？<br>我的思路是这样的：</p>
+<p>我们维护一个有序单链表，越靠近链表尾部的结点是越早之前访问的。当有一个新的数据被访问时，我们从链表头开始顺序遍历链表。<br>1.如果此数据之前已经被缓存在链表中了，我们遍历得到这个数据对应的结点，并将其从原来的位置删除，然后再插入到链表的头部。<br>2.如果此数据没有在缓存链表中，又可以分为两种情况：·如果此时缓存未满，则将此结点直接插入到链表的头部；<br>·如果此时缓存已满，则链表尾结点删除，将新的数据结点插入链表的头部。<br>这样我们就用链表实现了一个LRU缓存，是不是很简单？<br>现在我们来看下m缓存访问的时间复杂度是多少。因为不管缓存有没有满，我们都需要遍历一遍链表，所以这种基于链表的实现思路，缓存访问的时间复杂度为O（n）。</p>
+<p>实际上，我们可以继续优化这个实现思路，比如引入散列表（Hash table）来记录每个数据的位置，将缓存访问的时间复杂度降到O（1）。因为要涉及我们还没有讲到的数据结构，所以这个优化方案，我现在就不详细说了，等讲到散列表的时候，我会再拿出来讲。<br>除了基于链表的实现思路，实际上还可以用数组来实现LRU缓存淘汰策略。如何利用数组实现LRU缓存淘汰策略呢？我把这个问题留给你思考。</p>
+<p>课后思考<br>如果字符串是通过单链表来存储的，那该如何来判断是一个回文串呢？相应的时间空间复杂度又是多少呢？</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent">
+        </div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+              target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i>
+              知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+        <div class="post-nepre half previous">
+          
+            <a href="/2018/08/25/geek_baiduPicbed/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Extra/20180825/baidupicbed.jpg"
+                  style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
+                  src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Extra/20180825/baidupicbed.jpg">
+              </div>
+              <span class="label">
+                Previous Post</span>
+              <div class="info">
+                <h3>
+                  BaiduCloud Picbed</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="post-nepre half next">
+            
+              <a href="/2018/07/25/geek_RPC%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%8E%9F%E7%90%86/" rel="next">
+                <div class="background">
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+                </div>
+                <span class="label">
+                  Next Post</span>
+                <div class="info">
+                  <h3>
+                    RPC架构简介与原理</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz",
+        appKey: "L1bSPRMkKoL4w1KzkT85rXnl",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image"
+              alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+              <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+    </div>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Casuor<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Casuor</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Casuor" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://j.mp/35ycJAK" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/Geek/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Live/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Resource/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Thinking/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Transfer/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/Reading/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Comic/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  动漫
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Picture/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  我的盘
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="3099159214"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+
+</html>
