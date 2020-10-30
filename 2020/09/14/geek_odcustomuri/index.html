@@ -410,17 +410,17 @@
           <h2 id="Onemanager-amp-Cloudflare自定义域名"><a href="#Onemanager-amp-Cloudflare自定义域名" class="headerlink" title="Onemanager &amp; Cloudflare自定义域名"></a>Onemanager &amp; Cloudflare自定义域名</h2><blockquote>
 <p>OneManager 用的Tencent的云函数</p>
 <p>原地址：<a href="https://service-ovx4zkhy-1258833316.hk.apigw.tencentcs.com/release/Aki/" target="_blank" rel="noopener">https://service-ovx4zkhy-1258833316.hk.apigw.tencentcs.com/release/Aki/</a></p>
-<p>更改后：<a href="https://onedrive.casuor.top/release/Aki" target="_blank" rel="noopener">https://onedrive.casuor.top/release/Aki</a></p>
-<p>problem:还不是很方便，解决方法就是在Worker里动手(拼接url)，ES6不懂</p>
+<p>更改后：<a href="https://onedrive.casuor.top/release/Aki" target="_blank" rel="noopener">https://onedrive.casuor.top/release/Aki</a><br>二改： <a href="https://onedrive.casuor.top/" target="_blank" rel="noopener">https://onedrive.casuor.top/</a><br>problem:还不是很方便，解决方法就是在Worker里动手(拼接url)，ES6不懂</p>
 </blockquote>
 <h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><ul>
 <li>创建Worker</li>
 </ul>
-<pre><code>addEventListener(
+<p>   addEventListener(<br>      “fetch”,event =&gt; {<br>        let url=new URL(event.request.url);<br>        url.hostname=”service-ovx4zkhy-1258833316.hk.apigw.tencentcs.com”;//填字记的<br>        let request=new Request(url,event.request);<br>        event. respondWith(<br>          fetch(request)<br>        )<br>      }<br>    )</p>
+<h3 id="更新后"><a href="#更新后" class="headerlink" title="更新后"></a>更新后</h3><pre><code>addEventListener(
   &quot;fetch&quot;,event =&gt; {
     let url=new URL(event.request.url);
     url.hostname=&quot;service-ovx4zkhy-1258833316.hk.apigw.tencentcs.com&quot;;//填字记的
-    let request=new Request(url,event.request);
+    let request=new Request(url+&quot;release/Aki/&quot;,event.request);
     event. respondWith(
       fetch(request)
     )
