@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">LOL Leesin | Casuor</title>
+  <title itemprop="name">Onemanager Custom domain | Casuor</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/favicon.ico">
   
@@ -375,12 +375,12 @@
 
 <div class="pattern-center single-center">
   <!-- 有配图默认渲染第一张 -->
-  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.jpg);"
-    src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.jpg">
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg);"
+    src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
   </div>
   <header class="pattern-header single-header">
     <h1 class="entry-title">
-      LOL Leesin</h1>
+      Onemanager Custom domain</h1>
     <p class="entry-census">
       <span>
         <a href="">
@@ -392,7 +392,7 @@
       </span>
       <span class="bull">
         ·</span>
-      2020-8-6<span class="bull">
+      2020-9-14<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
   </header>
@@ -407,19 +407,37 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.jpg" target="_blank" rel="noopener" data-fancybox="images" data-caption="leesin"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.jpg" /></a>
-
-<a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin2.jpg" target="_blank" rel="noopener" data-fancybox="images" data-caption="leesin"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin2.jpg" /></a>
-
-<a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin3.jpg" target="_blank" rel="noopener" data-fancybox="images" data-caption="leesin"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin3.jpg" /></a>
-
-<a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.png" target="_blank" rel="noopener" data-fancybox="images" data-caption="leesin"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.png" /></a>
-
-<a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin2.png" target="_blank" rel="noopener" data-fancybox="images" data-caption="leesin"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin2.png" /></a>
-
-<a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin3.png" target="_blank" rel="noopener" data-fancybox="images" data-caption="leesin"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin3.png" /></a>
-
-<a href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin4.png" target="_blank" rel="noopener" data-fancybox="images" data-caption="leesin"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin4.png" /></a>
+          <h2 id="Onemanager-amp-Cloudflare自定义域名"><a href="#Onemanager-amp-Cloudflare自定义域名" class="headerlink" title="Onemanager &amp; Cloudflare自定义域名"></a>Onemanager &amp; Cloudflare自定义域名</h2><blockquote>
+<p>OneManager 用的Tencent的云函数</p>
+<p>原地址：<a href="https://service-ovx4zkhy-1258833316.hk.apigw.tencentcs.com/release/Aki/" target="_blank" rel="noopener">https://service-ovx4zkhy-1258833316.hk.apigw.tencentcs.com/release/Aki/</a></p>
+<p>更改后：<a href="https://onedrive.casuor.top/release/Aki" target="_blank" rel="noopener">https://onedrive.casuor.top/release/Aki</a></p>
+<p>problem:还不是很方便，解决方法就是在Worker里动手(拼接url)，ES6不懂</p>
+</blockquote>
+<h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><ul>
+<li>创建Worker</li>
+</ul>
+<pre><code>addEventListener(
+  &quot;fetch&quot;,event =&gt; {
+    let url=new URL(event.request.url);
+    url.hostname=&quot;service-ovx4zkhy-1258833316.hk.apigw.tencentcs.com&quot;;//填字记的
+    let request=new Request(url,event.request);
+    event. respondWith(
+      fetch(request)
+    )
+  }
+)</code></pre><ul>
+<li>设置CNAME</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20201030100818054.png" alt="image-20201030100818054"></p>
+<ul>
+<li>添加路由</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20201030101032725.png" alt="image-20201030101032725"></p>
+<p>###PS:</p>
+<blockquote>
+<p>CNAME里填哪个url都ok</p>
+</blockquote>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><p><a href="https://www.nbmao.com/archives/4014" target="_blank" rel="noopener">https://www.nbmao.com/archives/4014</a></p>
 
         </div>
         <!-- .entry-content -->
@@ -454,17 +472,17 @@
         
         <div class="post-nepre half previous">
           
-            <a href="/2020/09/14/geek_odcustomuri/" rel="prev">
+            <a href="/2020/10/28/pic_megumi/" rel="prev">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg"
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/20201028/megumi.jpg"
                   style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
-                  src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+                  src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/20201028/megumi.jpg">
               </div>
               <span class="label">
                 Previous Post</span>
               <div class="info">
                 <h3>
-                  Onemanager Custom domain</h3>
+                  Megumi</h3>
                 <hr>
               </div>
             </a>
@@ -474,17 +492,17 @@
           
           <div class="post-nepre half next">
             
-              <a href="/2020/08/06/pic_yasuo/" rel="next">
+              <a href="/2020/08/06/pic_leesin/" rel="next">
                 <div class="background">
-                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/yasuo/yasuo7.jpg"
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.jpg"
                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/yasuo/yasuo7.jpg">
+                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/LOL/leesin/leesin1.jpg">
                 </div>
                 <span class="label">
                   Next Post</span>
                 <div class="info">
                   <h3>
-                    LOL Yasuo</h3>
+                    LOL Leesin</h3>
                   <hr>
                 </div>
               </a>
