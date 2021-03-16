@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">Powershell脚本学习(未完) | Casuor</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Casuor";
+  mashiro_option.author_name = "";
+  mashiro_option.site_url = "https://casuor.top";
+  mashiro_option.v_appId = "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz";
+  mashiro_option.v_appKey = "L1bSPRMkKoL4w1KzkT85rXnl";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/1.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/2.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/3.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/4.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/5.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/6.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/7.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/8.png".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body
+  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+
+  <div class="scrollbar" id="bar">
+    <!--实现换肤-->
+    <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+</div>
+<canvas id="night-mode-cover"></canvas>
+    <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> <span id="open-skinMenu"> 切换主题 | SCHEME TOOL &nbsp;<i
+                class="iconfont icon-gear inline-block rotating"></i> </span></div>
+</div>
+  </div>
+
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dim">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://casuor.top">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>The wheel turns,nothing is ever new!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/Casuor" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/github.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/user/home?id=280651004" target="_blank" class="social-github" title="netease">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/neat.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://t.me/casuor" target="_blank" class="social-github" title="telegram">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/Telegram.ico">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Casuor</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/Geek/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Live/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Resource/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Thinking/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Transfer/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/Reading/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Comic/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          动漫
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Picture/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          我的盘
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div class="pattern-center single-center">
+  <!-- 有配图默认渲染第一张 -->
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg);"
+    src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg">
+  </div>
+  <header class="pattern-header single-header">
+    <h1 class="entry-title">
+      Powershell脚本学习(未完)</h1>
+    <p class="entry-census">
+      <span>
+        <a href="">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/favicon.ico">
+        </a>
+      </span>
+      <span>
+        <a href=""></a>
+      </span>
+      <span class="bull">
+        ·</span>
+      2020-12-15<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+  </header>
+</div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1"
+        class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="Powershell脚本学习"><a href="#Powershell脚本学习" class="headerlink" title="Powershell脚本学习"></a>Powershell脚本学习</h1><h2 id="PowerShell-版本"><a href="#PowerShell-版本" class="headerlink" title="PowerShell 版本"></a>PowerShell 版本</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$PSVersionTable</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210127141329856.png" alt="image-20210127141329856"></p>
+<h2 id="Windows-PowerShell-ISE"><a href="#Windows-PowerShell-ISE" class="headerlink" title="Windows PowerShell ISE"></a>Windows PowerShell ISE</h2><p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210127142023397.png" alt="image-20210127142023397"></p>
+<h2 id="PowerShell-基本命令"><a href="#PowerShell-基本命令" class="headerlink" title="PowerShell 基本命令"></a>PowerShell 基本命令</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#powershell版本</span></span><br><span class="line"><span class="variable">$PSVersionTable</span></span><br><span class="line"><span class="comment">#本地模块</span></span><br><span class="line"><span class="built_in">get-module</span> <span class="literal">-ListAvailable</span></span><br><span class="line"><span class="comment">#问：只知道命令的一部分，如何查找命令？</span></span><br><span class="line"><span class="built_in">get-command</span>  *service*</span><br><span class="line"><span class="comment">#获取帮助</span></span><br><span class="line"><span class="built_in">Get-Help</span></span><br><span class="line"><span class="comment">#更新帮助</span></span><br><span class="line"><span class="built_in">update-help</span></span><br><span class="line"><span class="comment">#获取更新列表</span></span><br><span class="line"><span class="built_in">Get-HotFix</span></span><br><span class="line"><span class="built_in">Get-Command</span></span><br><span class="line"><span class="comment">#获取命令示例</span></span><br><span class="line">help <span class="built_in">Get-EventLog</span> <span class="literal">-Examples</span></span><br><span class="line"><span class="comment">#访问关于主题</span></span><br><span class="line">help(man) *common*</span><br><span class="line">help about*</span><br><span class="line"><span class="comment">#访问在线帮助</span></span><br><span class="line">help <span class="built_in">Get-Alias</span> <span class="literal">-Online</span></span><br><span class="line"><span class="comment">#参数详解</span></span><br><span class="line">	<span class="comment">#参数集和通用参数</span></span><br><span class="line">	<span class="comment">#可选和必选参数</span></span><br><span class="line">	<span class="comment">#位置参数</span></span><br><span class="line"><span class="comment">#8个通用参数</span></span><br><span class="line"><span class="literal">-Verbose</span></span><br><span class="line"><span class="literal">-Debug</span></span><br><span class="line"><span class="literal">-WarningAction</span></span><br><span class="line"><span class="literal">-WarningVariable</span></span><br><span class="line"><span class="literal">-ErrorAction</span></span><br><span class="line"><span class="literal">-ErrorVariable</span></span><br><span class="line"><span class="literal">-OutVariable</span></span><br><span class="line"><span class="literal">-OutBuffer</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="cmdlet"><a href="#cmdlet" class="headerlink" title="cmdlet"></a>cmdlet</h2><p><code>cmdlet</code> 或 <code>Command let</code> 是 Windows PowerShell 环境中使用的轻量级命令。Windows PowerShell 运行时在命令提示符下调用这些 <code>cmdlet</code>。你可以通过 Windows PowerShell API 以编程方式创建和调用它们。 </p>
+<h2 id="Cmdlet-vs-Command"><a href="#Cmdlet-vs-Command" class="headerlink" title="Cmdlet vs Command"></a>Cmdlet vs Command</h2><p>Cmdlet 与其他命令 shell 环境中的命令有以下不同的方式 </p>
+<ul>
+<li>Cmdlet 是.NET Framework 类对象; 而不仅仅是独立的可执行文件。</li>
+<li>只需十几行代码即可轻松构建 Cmdlet。</li>
+<li>cmdlet 不处理解析，错误呈现和输出格式。它由 Windows PowerShell 运行时完成。</li>
+<li>Cmdlet 进程适用于不在文本流上的对象，对象可以作为输出进行流水线操作。</li>
+<li>Cmdlet 是基于记录的，因为它们一次处理单个对象。</li>
+</ul>
+<h2 id="安装PowerShellGet"><a href="#安装PowerShellGet" class="headerlink" title="安装PowerShellGet"></a>安装PowerShellGet</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#PowerShell 6及以上安装 PowerShellGet</span></span><br><span class="line"><span class="built_in">Install-Module</span> <span class="literal">-Name</span> PowerShellGet <span class="literal">-Force</span></span><br><span class="line"><span class="comment">#Powershell-Get download problem</span></span><br><span class="line">[<span class="type">Net.ServicePointManager</span>]::SecurityProtocol = [<span class="type">Net.SecurityProtocolType</span>]::Tls12 </span><br><span class="line"><span class="comment">#WARNING: The version '1.4.6' of module 'PackageManagement' is currently in use. Retry the operation after closing the applications</span></span><br><span class="line"><span class="built_in">Get-Module</span> <span class="literal">-ListAvailable</span> PowerShellGet</span><br><span class="line"><span class="comment">#如下图</span></span><br><span class="line"><span class="comment">#更新</span></span><br><span class="line"><span class="built_in">Update-Module</span> <span class="literal">-Name</span> PowerShellGet</span><br><span class="line"><span class="keyword">Exit</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210127180941841.png" alt="image-20210127180941841"></p>
+<h2 id="习题1"><a href="#习题1" class="headerlink" title="习题1"></a>习题1</h2><ol>
+<li>运行Update-Help</li>
+<li>哪一个Cmdlet命令能够把其他Cmdlet命令输出的内容转化为HTML?</li>
+<li>哪一个Cmdlet命令可以重定向输出到一个file或者打印机？</li>
+<li>哪一个Cmdlet命令可以操作进程（processes）?</li>
+<li>哪一个Cmdlet命令可以向事件日志写入数据？</li>
+<li>创建修改导入别名（aliases）?</li>
+<li>怎么保证你在shell中的输入都在一个脚本（transcript）中，怎么保存这个脚本到一个文本文件中？</li>
+<li>怎么只获取最近的100条安全事件日志记录？</li>
+<li>是否有办法可以获取一个远程计算机上安装的服务（services）列表？</li>
+<li>是否有办法看到一个远程计算机运行了什么进程？</li>
+<li>尝试查看Out-File这个Cmdlet命令的帮助文档》通过该Cmdlet命令输出到文件每一行记录的默认宽度大小是多少字符？是否有一个参数可以让你修改这个宽度？</li>
+<li>在默认情况下，Out-File将覆盖任何已经存在具有相同的文件名。是否有一个参数可以预防Cmdlet命令覆盖现有文件？</li>
+<li>如何查看在powershell中预先定义所有别名列表？</li>
+<li>怎么使用别名和缩写的参数名称来写一条最短的命令从而能检索出一台成为Server1的计算机正在运行的进程列表？</li>
+<li>有多少Cmdlet命令可以处理普通对象？</li>
+<li>哪一个帮助主题可以告诉你关于数组（arrays）的更多信息？</li>
+</ol>
+<h2 id="答案1"><a href="#答案1" class="headerlink" title="答案1"></a>答案1</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="built_in">Update-Help</span></span><br><span class="line"><span class="comment">#2</span></span><br><span class="line">help html</span><br><span class="line">man html</span><br><span class="line"><span class="built_in">Get-Command</span> <span class="literal">-noun</span> html</span><br><span class="line">gcm <span class="literal">-noun</span> html</span><br><span class="line"><span class="comment">#3</span></span><br><span class="line">gcm <span class="literal">-Noun</span> File,Printer</span><br><span class="line"><span class="comment">#4</span></span><br><span class="line">gcm <span class="literal">-Noun</span> <span class="keyword">Process</span></span><br><span class="line">help *<span class="keyword">Process</span></span><br><span class="line"><span class="comment">#5</span></span><br><span class="line">gcm <span class="literal">-Verb</span> write  <span class="literal">-Noun</span> EventLog</span><br><span class="line">gcm <span class="literal">-Verb</span> <span class="string">""</span>  <span class="literal">-Noun</span> EventLog</span><br><span class="line">help *log</span><br><span class="line"><span class="comment">#6</span></span><br><span class="line">help *alias</span><br><span class="line">gcm <span class="literal">-Noun</span> alias</span><br><span class="line"><span class="comment">#7</span></span><br><span class="line">help transcript</span><br><span class="line"><span class="comment">#8</span></span><br><span class="line">help <span class="built_in">Get-EventLog</span> <span class="literal">-Parameter</span> Newest</span><br><span class="line"><span class="built_in">Get-EventLog</span> <span class="literal">-LogName</span> Security <span class="literal">-Newest</span> <span class="number">100</span></span><br><span class="line"><span class="comment">#9</span></span><br><span class="line">help <span class="built_in">Get-Service</span> <span class="literal">-Parameter</span> computername</span><br><span class="line"><span class="comment">#NetBIOS name,IP address,fully qualified domain name</span></span><br><span class="line"><span class="comment">#computer name/a dot ./localhost/"127.0.0.1"</span></span><br><span class="line"><span class="built_in">Get-Service</span> <span class="literal">-ComputerName</span> <span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="comment">#10</span></span><br><span class="line">help <span class="built_in">Get-Process</span> <span class="literal">-Parameter</span> computername</span><br><span class="line"><span class="built_in">Get-Process</span> <span class="literal">-ComputerName</span> .</span><br><span class="line"><span class="comment">#11</span></span><br><span class="line">man <span class="built_in">Out-File</span> <span class="literal">-Online</span></span><br><span class="line">Help <span class="built_in">Out-File</span> –<span class="keyword">parameter</span> Width</span><br><span class="line"><span class="comment">#12</span></span><br><span class="line">help <span class="built_in">Out-File</span> <span class="literal">-Parameter</span> NoClobber</span><br><span class="line"><span class="comment">#13</span></span><br><span class="line"><span class="built_in">Get-Alias</span></span><br><span class="line"><span class="comment">#14</span></span><br><span class="line"><span class="comment">#旧版会有computername参数如下图，pwsh7没有此参数</span></span><br><span class="line"><span class="function"><span class="keyword">Function</span> <span class="title">cname</span></span> &#123;<span class="built_in">set-alias</span> <span class="literal">-confirm</span> computername <span class="literal">-value</span> c&#125;</span><br><span class="line">ps <span class="literal">-c</span> Server1</span><br><span class="line"><span class="comment">#15</span></span><br><span class="line"><span class="built_in">get-command</span> –noun object <span class="comment">#noun 包含指定名词</span></span><br><span class="line"><span class="comment">#16</span></span><br><span class="line">help about_arrays</span><br><span class="line">help *array*</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210128224724456.png" alt="pspara"></p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="剖析一个命令"><a href="#剖析一个命令" class="headerlink" title="剖析一个命令"></a>剖析一个命令</h3><p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210129093641772.png" alt="image-20210129093641772"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210129093956949.png" alt="image-20210129093956949"></p>
+<h3 id="Cmdlet命名惯例"><a href="#Cmdlet命名惯例" class="headerlink" title="Cmdlet命名惯例"></a>Cmdlet命名惯例</h3><ul>
+<li>Cmdlet是一个 原生的powershell命令行工具。该术语仅仅存在于powershell和类似c#的.net framework语言中。Cmdlet仅仅出现在powershell中。</li>
+<li>函数和Cmdlet类似，但不是以.net语言编写，而是以powershell自己的脚本语言编写。</li>
+<li>工作流是嵌入powershell的工作流执行系统的一类特殊函数。</li>
+<li>应用程序是任意类型的外部可执行程序，包括类似ping,ipconfig等命令行工具。</li>
+<li>命令是一个通用的术语，用于代表任何或所有上面提到的术语。</li>
+</ul>
+<blockquote>
+<p>规则应该以标准的动词开始，比如Get、Set、New或Pause。你可以运行Get-Verb查看允许使用的动词列表（虽然只有少部分是常用的，但你大概会看到100个左右）。在动词之后紧接着一个破折号，然后是一个单数形式的名词，比如Service或Process或EventLog。由于PowerShell允许开发人员自己命名名词，因此并没有一个“Get-Noun”的Cmdlet来显示所有名词。</p>
+<p>  这个规则的妙处在哪里？假设我们告诉你如下几个Cmdlet名称：New-Service、Get-Service、Get-Process、Set-Service等。你是否能够猜出哪一个命令可以创建一个新的Exchange邮箱？哪一个命令可以修改活动目录用户？如果你猜是“Get-Mailbox”，那么第一个就猜对了。如果你猜“Set-User”，那么第二个就非常接近了。实际上是Set-ADUser，你可以在活动目录模块的域控制器中找到该用户。重点是，通过一致的命名规则以及有限的动词集合，猜测命令名称变为可能，在此之后才是使用帮助或“Get-Command”加通配符验证猜想。估计你所需要的命令名称会变得更加简单，而无须每次都去搜索Google或Bing。</p>
+</blockquote>
+<h3 id="别名：命令的昵称"><a href="#别名：命令的昵称" class="headerlink" title="别名：命令的昵称"></a>别名：命令的昵称</h3><ol>
+<li>获取别名</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-Alias</span> <span class="literal">-Definition</span> <span class="string">"Get-Service"</span></span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210129150748704.png" alt="image-20210129150748704"></p>
+<ol start="2">
+<li>参数名称的别名</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#computername太长</span></span><br><span class="line"><span class="built_in">Get-EventLog</span> <span class="literal">-ComputerName</span> <span class="string">"canary"</span> <span class="literal">-LogName</span> <span class="string">'Windows PowerShell'</span></span><br><span class="line"><span class="comment">#获取命令get-eventlog 扩展属性参数computername的别名</span></span><br><span class="line">(gcm <span class="built_in">Get-EventLog</span> | select <span class="literal">-ExpandProperty</span> parameters).computername.aliases</span><br><span class="line"><span class="comment">#结果： Cn</span></span><br><span class="line"><span class="comment">#新写法</span></span><br><span class="line"><span class="built_in">Get-EventLog</span> <span class="literal">-Cn</span> <span class="string">"canary"</span> <span class="literal">-LogName</span> <span class="string">'Windows PowerShell'</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>位置参数</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">help <span class="built_in">get-childitem</span> <span class="literal">-full</span></span><br><span class="line"><span class="comment">#其中-path,-filter为位置参数</span></span><br><span class="line"><span class="comment">#Position? 1</span></span><br><span class="line"><span class="comment">#对于位置参数来说，你无须输入参数名　称——仅需要在正确的位置提供参数值，例如：</span></span><br><span class="line"> gi C:\Users</span><br><span class="line"> gi <span class="literal">-path</span> C:\Users</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>位置参数的一个弊端是你必须记住每一个位置所代表的参数。你还必须首先按照正确的顺序输入位置参数，然后才能输入命名（非位置）参数。如果你将位置参数的顺序搞混，命令则会失败。对于你可能已经使用多年的简单<code>DIR</code>命令来说，如果提供<code>-Path</code>参数将会变得很怪异，没有人会这么做。但对于更复杂的命令来说，比如一行包含3至4个位置参数的命令，将难以记住每一个位置所代表的参数。</p>
+</blockquote>
+<blockquote>
+<p>比如说：</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move file.txt users\donjones\</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move <span class="literal">-Path</span> c:\file.txt <span class="literal">-Destination</span> \users\donjones\</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move <span class="literal">-Destination</span> \users\donjones\ <span class="literal">-Path</span> c:\file.txt</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Show-Command</li>
+</ol>
+<blockquote>
+<p>该命令允许你指定你无法用对的命令名称，并以图形化的方式将命令的参数名称展示出来。</p>
+</blockquote>
+<h2 id="练习2"><a href="#练习2" class="headerlink" title="练习2"></a>练习2</h2><h2 id="使用提供程序"><a href="#使用提供程序" class="headerlink" title="使用提供程序"></a>使用提供程序</h2><ol>
+<li>什么是提供程序</li>
+</ol>
+<blockquote>
+<p>一个PowerShell的提供程序，或者说PSProvider，其本质上是一个适配器。它可以接受某些数据存储，并使得这些介质看起来像是磁盘驱动器一样。你可以通过下面的命令查看当前Shell中已经存在的提供程序。</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-PSProvider</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210130122201194.png" alt="image-20210130122201194"></p>
+<p>下面是常见的一些功能描述。</p>
+<ul>
+<li><p>ShouldProcess——这部分提供程序支持-WhatIf和-Confirm参数，保证我们在正式执行这部分脚本之前可以对它们进行测试。</p>
+</li>
+<li><p>Filter——在Cmdlet中提供程序的数据时，支持-Filter参数</p>
+</li>
+<li><p>Credentials——该提供程序允许使用可变更的凭据连接数据存储。这也就是-Credentials参数的作用。</p>
+</li>
+<li><p>Transactions——该提供程序支持事务，也就是允许你在该提供程序中将多个变更作为一个原子操作进行提交或者全部回滚。</p>
+</li>
+</ul>
+<blockquote>
+<p>你也可以使用某个提供程序创建一个PSDrive。PSDrive可以通过一个特定的提供程序连接到某些存储数据的介质。这和在Windows资源管理器中类似，本质上是创建了一个驱动器映射。但是由于PSDrive使用了提供程序，除了可以连接磁盘之外，还能连接更多的数据存储介质。运行下面的命令，可以看到当前已连接的驱动器。</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-PSDrive</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210130125113400.png" alt="image-20210130125113400"></p>
+<p>在上面返回的列表中，可以看到有3个驱动器使用了FileSystem提供程序，两个使用了Registry提供程序，等等。PSProvider会适配对应的数据存储，通过PSDrive机制使得数据存储可被访问，然后可以使用一系列Cmdlets去查阅或者操作每个PSDrive呈现出来的数据。大多数情况下，操作PSDrive的cmdlet名词部分都会包含“Item”。</p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210130134945711.png" alt="image-20210130134945711"></p>
+<blockquote>
+<p>我们将在系统中使用上述Cmdlet或者它们的别名来调用提供程序。或许对你而言，文件系统应该算是最熟悉的提供程序了，所以我们将会从文件系统PSProvider开始学习。</p>
+</blockquote>
+<h3 id="FileSystem的结构"><a href="#FileSystem的结构" class="headerlink" title="FileSystem的结构"></a>FileSystem的结构</h3><p><strong>组成对象</strong></p>
+<ul>
+<li>磁盘驱动器</li>
+<li>文件夹</li>
+<li>文件</li>
+</ul>
+<blockquote>
+<p>磁盘驱动器是最上层的对象，包含文件夹和文件。文件夹是一种容器对象，它可以包含文件以及其他文件夹。文件不是一种容器对象，该对象处于层级的末尾。</p>
+<p>PowerShell中的术语和文件系统中的略有不同。因为PSDrive可能不是指向某个文件系统——比如PSDrive可以映射到注册表（显然注册表并不是一种文件系统），所以PowerShell并不会使用“文件”以及“文件夹”的说法。相反，PowerShell采用更通俗的说法——“项”（Item）。一个文件或者一个文件夹都叫作项，尽管本质上是两种不同的项。这也就是为什么前面返回的Cmdlet名字中都有“Item”字符。</p>
+<p>每个项基本上都会存在对应的属性。比如，一个文件项可能有最后写入的时间、是否只读等属性。一些项，比如文件夹，可能包含子项（子项包含在文件夹项中）。</p>
+</blockquote>
+<ul>
+<li>比如Clear、Copy、Get、Move、New、Remove、Rename以及Set等动词可以应用于这些项（比如文件或者文件夹）以及它们对应的属性（比如该项最后写入的时间或者该项是否只读）。</li>
+<li>Item名词对应的是单独对象，比如文件夹或文件。</li>
+<li>ItemProperty代表 一个项对应的属性。比如只读，项目创建时间，长度等。</li>
+<li>childItem名词对应一个项包含于另一个项中。</li>
+</ul>
+<blockquote>
+<p>需要记住的是，这些Cmdlet都是通用的，因为它们需要处理各种不同的数据源。但是某些Cmdlet在某些特定场合下不一定能正常工作。比如，FileSystem提供程序不支持事务，所以文件系统驱动器下的Cmdlet中的命令都不支持-UseTransaction参数。再比如，注册表不支持Filter功能，所以注册表驱动器下的Cmdlet也都不支持-Filter参数。</p>
+</blockquote>
+<blockquote>
+<p>某些PSProvider并不具有对应的项属性。比如，<code>Environment</code>这个PSProvider主要用来构造PowerShell中可用的ENV：类型驱动器（如Env:\PSModulePath）。该驱动器主要的作用是访问Windows中的环境变量，但是如下所示，它并没有对应的项属性。</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-ItemProperty</span> <span class="literal">-Path</span> Env:\PSModulePath</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210130183710374.png" alt="image-20210130183710374"></p>
+<blockquote>
+<p>文件系统可以算作其他数据存储的模板。例如，图5.2展示了Windows注册表的结构。</p>
+<p>  注册表以类似文件系统的结构呈现，其中注册表的键等同于文件系统中的文件夹，对应的键值类似于文件系统中的文件，等等。正是这种广泛的相似性，使得文件系统成为其他形式数据源的最佳模板。所以当用PowerShell访问其他数据存储的时候，显示为驱动器的形式（可以依次展开为项以及查看对应的属性）。但是相似性到这一层级也就结束了：如果你再继续向下展开，那么你会发现不同形式的存储其实差别很大。这也就是为什么各种项的Cmdlet支持如此多的功能，但是并不是每个功能在每种存储中都能运行。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210130184101788.png" alt="image-20210130184101788"></p>
+<h3 id="使用文件系统"><a href="#使用文件系统" class="headerlink" title="使用文件系统"></a>使用文件系统</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">ni folder [-<span class="type">Type</span>](Directory)</span><br><span class="line">md folder</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用通配符与字面路径"><a href="#使用通配符与字面路径" class="headerlink" title="使用通配符与字面路径"></a>使用通配符与字面路径</h3><blockquote>
+<p>大部分项的Cmdlet都包含了<code>-Path</code>属性。默认情况下，该属性支持通配符输入。比如，我们查看<code>Get-ChildItem</code>的完整帮助文档，如下所示。</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-Help</span> gi <span class="literal">-Full</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210130190007121.png" alt="image-20210130190007121"></p>
+<p>“<code>*</code>”通配符代表0个或者多个字符，“<code>?</code>”通配符仅代表单个字符。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">get-childitem</span></span><br><span class="line">dir</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>“<code>*</code>”和“?”比较特殊，它们是通配符，所以在文件或者文件夹的名称中不允许带有“<em>”或者“?”字符。但是在PowerShell中，并不仅仅支持文件系统格式的数据存储。在大部分其他类型的数据存储中，“</em>”和“?”都可以包含在Item的名称中。比如，在注册表中，你可以看到一些项的名称中包含“?”字符。你应该发现了，这将导致一个问题。当在一个路径中使用了“*”或者“?”，PowerShell会如何对待，是作为一个通配符还是一个特定的字符？比如，如果你输入Windows?来寻找某个项，你到底是想寻找名称为Windows?的项，还是将“?”看成一个通配符，然后返回Windows 7或者是Windows 8的值。</p>
+<p>  针对此问题，PowerShell给出的解决办法是新增一个参数-LiteralPath。该参数并不支持通配符。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210130190307481.png" alt="image-20210130190307481"></p>
+<blockquote>
+<p>如果需要查询名字中带有<em>或者?，就要使用-LiteralPath参数，而不要使用-Path。需要注意的是，-LiteralPath这个参数不可隐式赋予。如果确定需要使用该参数，必须显式申明-LiteralPath参数。如果你在一开始就提供了路径，如我们前面例子所示的</em>.exe，那么它会被隐式转化为-Path参数，通配符也是如此。</p>
+</blockquote>
+<p><strong>demo</strong>-关闭Windows中的桌面透明特性</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd HKCU:</span><br><span class="line">cd .\Software</span><br><span class="line">cd .\Microsoft</span><br><span class="line">cd .\Windows</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CCanary%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210202154632591.png" alt="image-20210202154632591"></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> DWM <span class="literal">-Name</span> EnableWindowColorization <span class="literal">-Value</span> <span class="number">0</span></span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CCanary%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210202155103395.png" alt="image-20210202155103395"></p>
+<h2 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a>练习3</h2><h2 id="连接命令"><a href="#连接命令" class="headerlink" title="连接命令"></a>连接命令</h2><p>PowerShell通过管道（pipeline）把命令互相连接起来。管道通过传输一个命令，把其输出作为另外一个Cmdlet的输入，使得第二个命令可以通过第一个的结果作为输入并联合起来运行。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#管道输出到csV文件</span></span><br><span class="line">ps  | <span class="built_in">export-csv</span> pr.csv</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取</span></span><br><span class="line">import pr.csv</span><br><span class="line"><span class="comment">#管道输出到xml文件</span></span><br><span class="line">ps | <span class="built_in">Export-Clixml</span> pc.xml</span><br><span class="line">gc <span class="literal">-verb</span></span><br><span class="line"><span class="built_in">Get-Command</span> <span class="literal">-Verb</span> import</span><br><span class="line"><span class="built_in">Get-Command</span> <span class="literal">-Verb</span> export</span><br><span class="line"><span class="comment">#对比csv与xml</span></span><br><span class="line"><span class="built_in">compare-object</span> diff</span><br><span class="line">help diff</span><br><span class="line"></span><br><span class="line">ps | <span class="built_in">export-CliXML</span> reference.xml</span><br><span class="line"></span><br><span class="line">diff <span class="literal">-ReferenceObject</span> (<span class="built_in">Import-Clixml</span> reference.xml) <span class="literal">-DifferenceObject</span> (<span class="built_in">Get-Process</span>) <span class="literal">-Property</span> Name</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/image-20210202201830122.png" alt="image-20210202201830122"></p>
+<blockquote>
+<ul>
+<li>在数学层面上，括号在PowerShell中用于控制执行的顺序。在前面的例子中，强制“<code>Import-CliXML</code>”和“<code>Get-Process</code>”先于“<code>Diff</code>”运行。接着从“<code>Import-CLI</code>”得到的结果被送到“<code>-reference</code>”参数中，而“<code>Get-Process</code>”的结果被送到“<code>-difference</code>”参数中。参数名称实际上是“<code>-referenceObject</code>”和“<code>-differenceObject</code>”，在这里你可以提供足够Shell用于识别参数的缩写名称即可。也就是本例中的“<code>-reference</code>”和“<code>-difference</code>”已经足够唯一标识这两个参数了。即使我们把这两个参数缩短到“<code>-ref</code>”和“<code>-diff</code>”，命令也依旧能运行。</li>
+<li>相对于匹配两个完整的表格，<code>Diff</code>更加关注“<code>Name</code>”列，所以例子中使用了“<code>-property</code>”这个参数。如果我们不这样定义，结果将全部有差异，因为如“<code>VM</code>”“<code>CPU</code>”和“<code>PM</code>”这些列的值都不一样，结果集会被认为有差异。</li>
+<li>匹配结果将以表格形式展示，对于存在于参照结果集但是不存在于差异结果集的数据，会用“<code>&lt;=</code>”标识符表示。对于存在于差异结果集但是不存在于参照结果集的数据，会用“=&gt;”标识符表示。而两者均存在的，则不会出现在“Diff”输出的结果中。</li>
+</ul>
+</blockquote>
+<h3 id="管道传输到文件或打印机"><a href="#管道传输到文件或打印机" class="headerlink" title="管道传输到文件或打印机"></a>管道传输到文件或打印机</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dir &gt; DirectoryList.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<p>  其中“&gt;”符是PowerShell向后兼容旧版本cmd.exe命令的一个快捷方式。而实际上，当运行这个命令时，PowerShell底层会以下面的方式实现。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dir | <span class="built_in">Out-File</span> DirectoryList.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>。“Out-File”提供了一些参数让你定制替代的字符编码（如UTF8或Unicode）、追加内容到现有文件等功能。默认情况下，用“Out-File”创建的文件有80列宽，意味着有时候使用PowerShell需要修改命令的输出，以便适应这80列的限制</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://docs.microsoft.com/zh-cn/powershell/scripting/gallery/installing-psget?view=powershell-7.1" target="_blank" rel="noopener">安装 PowerShellGet - PowerShell | Microsoft Docs</a></p>
+<p><a href="https://www.cnblogs.com/sparkdev/p/5875110.html" target="_blank" rel="noopener">What is NetBIOS?</a></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent">
+        </div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+              target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i>
+              知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+          
+            <div class="post-nepre full next">
+              
+              <a href="/2020/12/11/geek_color%20scheme/" rel="next">
+                <div class="background">
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Commom/xiangxiang.jpg"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Casuor/CDN/Posts/Image/Commom/xiangxiang.jpg">
+                </div>
+                <span class="label">
+                  Next Post</span>
+                <div class="info">
+                  <h3>
+                    terminal conf</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz",
+        appKey: "L1bSPRMkKoL4w1KzkT85rXnl",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image"
+              alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+              <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+    </div>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Casuor<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Casuor</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Casuor" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/Geek/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Live/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Resource/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Thinking/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Transfer/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/Reading/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Comic/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  动漫
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Picture/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  我的盘
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="5251153855"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+
+</html>

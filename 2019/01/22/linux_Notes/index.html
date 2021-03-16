@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">Linux Notes | Casuor</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Casuor";
+  mashiro_option.author_name = "";
+  mashiro_option.site_url = "https://casuor.top";
+  mashiro_option.v_appId = "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz";
+  mashiro_option.v_appKey = "L1bSPRMkKoL4w1KzkT85rXnl";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/1.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/2.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/3.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/4.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/5.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/6.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/7.png,https://cdn.jsdelivr.net/gh/Casuor/CDN/Image/Background/8.png".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body
+  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+
+  <div class="scrollbar" id="bar">
+    <!--实现换肤-->
+    <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+</div>
+<canvas id="night-mode-cover"></canvas>
+    <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> <span id="open-skinMenu"> 切换主题 | SCHEME TOOL &nbsp;<i
+                class="iconfont icon-gear inline-block rotating"></i> </span></div>
+</div>
+  </div>
+
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dim">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://casuor.top">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>The wheel turns,nothing is ever new!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/Casuor" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/github.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/user/home?id=280651004" target="_blank" class="social-github" title="netease">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/neat.ico">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://t.me/casuor" target="_blank" class="social-github" title="telegram">
+                    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/Social/Telegram.ico">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Casuor</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/Geek/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Live/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Resource/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Thinking/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Transfer/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/Reading/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Comic/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          动漫
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/Picture/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          我的盘
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div class="pattern-center single-center">
+  <!-- 有配图默认渲染第一张 -->
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg);"
+    src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg">
+  </div>
+  <header class="pattern-header single-header">
+    <h1 class="entry-title">
+      Linux Notes</h1>
+    <p class="entry-census">
+      <span>
+        <a href="">
+          <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/favicon.ico">
+        </a>
+      </span>
+      <span>
+        <a href=""></a>
+      </span>
+      <span class="bull">
+        ·</span>
+      2019-1-22<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+  </header>
+</div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1"
+        class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="linux-command"><a href="#linux-command" class="headerlink" title="linux command"></a>linux command</h1><h1 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h1><h2 id="查看目录"><a href="#查看目录" class="headerlink" title="查看目录"></a>查看目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls #查看当前目录信息</span><br><span class="line">ls -l #以列表的方式显示</span><br><span class="line">ls -h #文件大小单位显示，默认是字节</span><br><span class="line">ls -a #显示隐藏文件或隐藏目录</span><br><span class="line">tree #以树状方式显示目录信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看当前目录路径"><a href="#查看当前目录路径" class="headerlink" title="查看当前目录路径"></a>查看当前目录路径</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd #查看当前目录路径</span><br></pre></td></tr></table></figure>
+<h2 id="清除终端"><a href="#清除终端" class="headerlink" title="清除终端"></a>清除终端</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
+<h2 id="切换目录命令"><a href="#切换目录命令" class="headerlink" title="切换目录命令"></a>切换目录命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd 目录 #切换到指定目录</span><br><span class="line">cd ~  #切换到当前用户的主目录</span><br><span class="line">cd .. #切换到上一级目录</span><br><span class="line">cd . #切换到当前目录</span><br><span class="line">cd - #切换到上一次目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="绝对路径和相对路径"><a href="#绝对路径和相对路径" class="headerlink" title="绝对路径和相对路径"></a>绝对路径和相对路径</h2><p>相对路径 从当前目录算起<br>绝对路径 从根目录算起</p>
+<h2 id="创建删除文件及目录"><a href="#创建删除文件及目录" class="headerlink" title="创建删除文件及目录"></a>创建删除文件及目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">touch 文件名 #创建指定文件</span><br><span class="line">mkdir 文件名 #创建指定目录</span><br><span class="line">mkdir 文件名 -p #创建所依赖的文件夹</span><br><span class="line">rm 文件名或目录名(-r)  #删除指定文件或目录</span><br><span class="line">rm -i #交互式提示</span><br><span class="line">rm -r #递归删除目录及内容</span><br><span class="line">rm -f #强制删除</span><br><span class="line">rm -d #删除空目录</span><br><span class="line">rmdir  目录名  #删除指定目录</span><br></pre></td></tr></table></figure>
+<h2 id="复制移动文件及目录"><a href="#复制移动文件及目录" class="headerlink" title="复制移动文件及目录"></a>复制移动文件及目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cp #拷贝文件，目录(-r)</span><br><span class="line">cp -i #交互式提示</span><br><span class="line">cp -r #递归拷贝</span><br><span class="line">cp -v #显示拷贝后的路径描述</span><br><span class="line">cp -a #保留文件的原有权限</span><br><span class="line">mv #移动文件，目录，重命名</span><br><span class="line">mv -i #交互式提示</span><br><span class="line">mv -v #显示移动后的路径描述</span><br></pre></td></tr></table></figure>
+<h2 id="终端命令的组成"><a href="#终端命令的组成" class="headerlink" title="终端命令的组成"></a>终端命令的组成</h2><p>command [-options] [parameter]</p>
+<p>每项信息的说明:</p>
+<p>command：命令名, 比如: ls、pwd</p>
+<p>[-options]：选项，可以有零个、一个或者多个选项，多个选项可以合并，比如使用的 -r 就是选项。</p>
+<p>[parameter]：参数，可以有零个、一个 或者 多个参数， 比如: touch 文件名、mkdir 目录名、cd 目标目录(路径)，这些文件名和目录名都是参数。</p>
+<p>[]：代表可选</p>
+<p>##　查看命令帮助<br>–help </p>
+<p>使用说明: 命令 –help</p>
+<p>man </p>
+<p>使用说明: man 命令</p>
+<blockquote>
+<p>man命令的使用说明</p>
+</blockquote>
+<ul>
+<li>空格 显示下一屏信息</li>
+<li>回车 显示下一行</li>
+<li>b 显示上一屏信息</li>
+<li>f 显示下一屏信息</li>
+<li>q 退出</li>
+</ul>
+<h1 id="高级命令"><a href="#高级命令" class="headerlink" title="高级命令"></a>高级命令</h1><h2 id="重定向命令"><a href="#重定向命令" class="headerlink" title="重定向命令"></a>重定向命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&gt;</td>
+<td align="left">如果文件存在会覆盖原有文件内容，相当于文件操作中的‘w’模式</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;</td>
+<td align="left">如果文件存在会追加写入文件末尾，相当于文件操作中的‘a’ 模式</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li><strong>&gt;</strong> 表示每次只写入最新的数据，原有数据不保留。</li>
+<li><strong>&gt;&gt;</strong> 表示每次在原有数据的基础上进行追加，原有数据会保留。</li>
+</ul>
+</blockquote>
+<h2 id="查看文件内容命令"><a href="#查看文件内容命令" class="headerlink" title="查看文件内容命令"></a>查看文件内容命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">cat</td>
+<td align="left">查看小型文件</td>
+</tr>
+<tr>
+<td align="left">more</td>
+<td align="left">分屏查看大型文件</td>
+</tr>
+</tbody></table>
+<p><strong>操作键说明:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">操作键</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">空格</td>
+<td align="left">显示下一屏信息</td>
+</tr>
+<tr>
+<td align="left">回车</td>
+<td align="left">显示下一行信息</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">显示上一屏信息</td>
+</tr>
+<tr>
+<td align="left">f</td>
+<td align="left">显示下一屏信息</td>
+</tr>
+<tr>
+<td align="left">q</td>
+<td align="left">退出</td>
+</tr>
+</tbody></table>
+<h3 id="管道-命令的使用"><a href="#管道-命令的使用" class="headerlink" title="管道(|)命令的使用"></a>管道(|)命令的使用</h3><p>管道(|)：一个命令的输出可以通过管道做为另一个命令的输入，可以理解成是一个容器，存放在终端显示的内容。</p>
+<p><strong>说明:</strong></p>
+<p>管道(|)一般结合 more 命令使用，主要是分配查看终端显示内容。</p>
+<h2 id="链接命令"><a href="#链接命令" class="headerlink" title="链接命令"></a>链接命令</h2><h3 id="1-链接命令的介绍"><a href="#1-链接命令的介绍" class="headerlink" title="1. 链接命令的介绍"></a>1. 链接命令的介绍</h3><p>链接命令是创建链接文件，链接文件分为:</p>
+<ul>
+<li>软链接</li>
+<li>硬链接</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ln -s</td>
+<td align="left">创建软链接</td>
+</tr>
+<tr>
+<td align="left">ln</td>
+<td align="left">创建硬链接</td>
+</tr>
+</tbody></table>
+<h3 id="2-软链接"><a href="#2-软链接" class="headerlink" title="2. 软链接"></a>2. 软链接</h3><p>类似于<strong>Windows下的快捷方式</strong>，当一个源文件的目录层级比较深，我们想要方便使用它可以给源文件创建一个软链接。</p>
+<p><strong>注意点:</strong></p>
+<ul>
+<li><strong>如果软链接和源文件不在同一个目录，源文件要使用绝对路径，不能使用相对路径。</strong></li>
+<li><strong>删除源文件则软链接失效</strong></li>
+<li><strong>可以给目录创建软链接</strong></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /home/...x.txt /home/desktop/x-s.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-硬链接"><a href="#3-硬链接" class="headerlink" title="3. 硬链接"></a>3. 硬链接</h3><p>类似于<strong>源文件的一个别名</strong>，也就是说这两个名字指向的是同一个文件数据。</p>
+<p><strong>注意点:</strong></p>
+<ul>
+<li><strong>创建硬链接使用相对路径和绝对路径都可以</strong></li>
+<li><strong>删除源文件，硬链接还可以访问到数据。</strong></li>
+<li><strong>创建硬链接，硬链接数会加1，删除源文件或者硬链接，硬链接数会减1。</strong></li>
+<li><strong>创建软链接，硬链接数不会加1</strong></li>
+<li><strong>不能给目录创建硬链接</strong></li>
+</ul>
+<p><strong>硬链接数:</strong></p>
+<p><strong>硬链接数就是文件数据被文件名使用的次数, 好比引用计数</strong></p>
+<h2 id="文本搜索命令"><a href="#文本搜索命令" class="headerlink" title="文本搜索命令"></a>文本搜索命令</h2><h3 id="1-grep命令的使用"><a href="#1-grep命令的使用" class="headerlink" title="1. grep命令的使用"></a>1. grep命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">grep</td>
+<td align="left">文本搜索</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">命令选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-i</td>
+<td align="left">忽略大小写</td>
+</tr>
+<tr>
+<td align="left">-n</td>
+<td align="left">显示匹配行号</td>
+</tr>
+<tr>
+<td align="left">-v</td>
+<td align="left">显示不包含匹配文本的所有行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">正则表达式</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">^</td>
+<td align="left">以指定字符串开头</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">以指定字符串结尾</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">匹配一个非换行符的字符</td>
+</tr>
+</tbody></table>
+<h2 id="查找文件命令"><a href="#查找文件命令" class="headerlink" title="查找文件命令"></a>查找文件命令</h2><h3 id="1-find命令及选项的使用"><a href="#1-find命令及选项的使用" class="headerlink" title="1. find命令及选项的使用"></a>1. find命令及选项的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">find</td>
+<td align="left">在指定目录下查找文件(包括目录)</td>
+</tr>
+</tbody></table>
+<p><strong>find命令选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-name</td>
+<td align="left">根据文件名(包括目录名)字查找</td>
+</tr>
+</tbody></table>
+<h3 id="2-find命令结合通配符的使用"><a href="#2-find命令结合通配符的使用" class="headerlink" title="2. find命令结合通配符的使用"></a>2. find命令结合通配符的使用</h3><p><strong>通配符:</strong></p>
+<p>是一种特殊语句，主要有星号(*)和问号(?)，用来模糊搜索文件</p>
+<table>
+<thead>
+<tr>
+<th align="left">通配符</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">*</td>
+<td align="left">代表0个或多个任意字符</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">代表任意一个字符</td>
+</tr>
+</tbody></table>
+<p><strong>扩展:</strong></p>
+<p>通配符不仅能结合 <strong>find</strong> 命令使用，还可以结合其它命令使用, 比如: <strong>ls、mv、cp</strong> 等，这里需要注意只有 <strong>find</strong> 命令使用通配符需要加上引号。</p>
+<h2 id="压缩和解压缩命令"><a href="#压缩和解压缩命令" class="headerlink" title="压缩和解压缩命令"></a>压缩和解压缩命令</h2><h3 id="1-压缩格式的介绍"><a href="#1-压缩格式的介绍" class="headerlink" title="1. 压缩格式的介绍"></a>1. 压缩格式的介绍</h3><p>Linux默认支持的压缩格式:</p>
+<ul>
+<li>.gz</li>
+<li>.bz2</li>
+<li>.zip</li>
+</ul>
+<p><strong>说明:</strong></p>
+<ul>
+<li>.gz和.bz2的压缩包需要使用tar命令来压缩和解压缩</li>
+<li>.zip的压缩包需要使用zip命令来压缩，使用unzip命令来解压缩</li>
+</ul>
+<p><strong>压缩目的:</strong></p>
+<ul>
+<li>节省磁盘空间</li>
+</ul>
+<h3 id="2-tar命令及选项的使用"><a href="#2-tar命令及选项的使用" class="headerlink" title="2. tar命令及选项的使用"></a>2. tar命令及选项的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">tar</td>
+<td align="left">压缩和解压缩命令</td>
+</tr>
+</tbody></table>
+<p><strong>tar命令选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-c</td>
+<td align="left">创建打包文件</td>
+</tr>
+<tr>
+<td align="left">-v</td>
+<td align="left">显示打包或者解包的详细信息</td>
+</tr>
+<tr>
+<td align="left">-f</td>
+<td align="left">指定文件名称, 必须放到所有选项后面</td>
+</tr>
+<tr>
+<td align="left">-z</td>
+<td align="left">压缩或解压缩(.gz)</td>
+</tr>
+<tr>
+<td align="left">-j</td>
+<td align="left">压缩或解压缩(.bz2)</td>
+</tr>
+<tr>
+<td align="left">-x</td>
+<td align="left">解包</td>
+</tr>
+<tr>
+<td align="left">-C</td>
+<td align="left">解压缩到指定目录</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">压缩</span></span><br><span class="line">tar -zcvf bin.tar.gz bin.txt</span><br><span class="line"><span class="meta">#</span><span class="bash">解压缩</span></span><br><span class="line">tar -zxvf bin.tar.gz -C ../desltop</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-zip和unzip命令及选项的使用"><a href="#3-zip和unzip命令及选项的使用" class="headerlink" title="3. zip和unzip命令及选项的使用"></a>3. zip和unzip命令及选项的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">zip</td>
+<td align="left">压缩成.zip格式文件</td>
+</tr>
+<tr>
+<td align="left">unzip</td>
+<td align="left">解压缩.zip格式文件</td>
+</tr>
+</tbody></table>
+<p><strong>unzip命令选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-d</td>
+<td align="left">解压缩到指定目录</td>
+</tr>
+</tbody></table>
+<p><strong>说明:</strong></p>
+<ul>
+<li>压缩文件尽量使用.gz格式，因为占用空间较少</li>
+<li>使用zip命令压缩的文件占用空间比较多, 当时比较通用，操作更加简单。</li>
+</ul>
+<h2 id="文件权限命令"><a href="#文件权限命令" class="headerlink" title="文件权限命令"></a>文件权限命令</h2><h3 id="1-chmod命令的介绍"><a href="#1-chmod命令的介绍" class="headerlink" title="1. chmod命令的介绍"></a>1. chmod命令的介绍</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">chmod</td>
+<td align="left">修改文件权限</td>
+</tr>
+</tbody></table>
+<p>chmod修改文件权限有两种方式:</p>
+<ul>
+<li>字母法</li>
+<li>数字法</li>
+</ul>
+<h3 id="2-chmod-字母法的使用"><a href="#2-chmod-字母法的使用" class="headerlink" title="2. chmod 字母法的使用"></a>2. chmod 字母法的使用</h3><p><strong>角色说明:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">角色</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">u</td>
+<td align="left">user, 表示该文件的所有者</td>
+</tr>
+<tr>
+<td align="left">g</td>
+<td align="left">group, 表示用户组</td>
+</tr>
+<tr>
+<td align="left">o</td>
+<td align="left">other, 表示其他用户</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">all, 表示所有用户</td>
+</tr>
+</tbody></table>
+<p><strong>权限设置说明:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">操作符</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">+</td>
+<td align="left">增加权限</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">撤销权限</td>
+</tr>
+<tr>
+<td align="left">=</td>
+<td align="left">设置权限</td>
+</tr>
+</tbody></table>
+<p><strong>权限说明:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">权限</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="left">可读</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">可写</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="left">可执行</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">无任何权限</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/chmod-1.png" alt="img"></p>
+<p><strong>chmod命令同时设置多个角色的效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/chmod-2.png" alt="img"></p>
+<h3 id="3-chmod-数字法的使用"><a href="#3-chmod-数字法的使用" class="headerlink" title="3. chmod 数字法的使用"></a>3. chmod 数字法的使用</h3><p>数字法就是“rwx” 这些权限也可以用<strong>数字来代替</strong></p>
+<p><strong>权限说明:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">权限</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="left">可读，权限值是4</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">可写，权限值是2</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="left">可执行，权限值是1</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">无任何权限，权限值是0</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/chmod-3.png" alt="chmod命令"></p>
+<h2 id="获取管理员权限的相关命令"><a href="#获取管理员权限的相关命令" class="headerlink" title="获取管理员权限的相关命令"></a>获取管理员权限的相关命令</h2><h3 id="1-sudo命令的使用"><a href="#1-sudo命令的使用" class="headerlink" title="1. sudo命令的使用"></a>1. sudo命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sudo -s</td>
+<td align="left">切换到root用户，获取管理员权限</td>
+</tr>
+<tr>
+<td align="left">sudo</td>
+<td align="left">某个命令的执行需要获取管理员权限可以在执行命令前面加上sudo</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/sudo-1.png" alt="sudo命令"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/sudo-2.png" alt="sudo命令"></p>
+<h3 id="2-whoami命令的使用"><a href="#2-whoami命令的使用" class="headerlink" title="2. whoami命令的使用"></a>2. whoami命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">whoami</td>
+<td align="left">查看当前用户限</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/whoami.png" alt="whoami命令"></p>
+<h3 id="3-exit命令的使用"><a href="#3-exit命令的使用" class="headerlink" title="3. exit命令的使用"></a>3. exit命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">exit</td>
+<td align="left">退出登录用户</td>
+</tr>
+</tbody></table>
+<h3 id="4-who命令的使用"><a href="#4-who命令的使用" class="headerlink" title="4. who命令的使用"></a>4. who命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">who</td>
+<td align="left">查看所有的登录用户</td>
+</tr>
+</tbody></table>
+<h3 id="5-passwd命令的使用"><a href="#5-passwd命令的使用" class="headerlink" title="5. passwd命令的使用"></a>5. passwd命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">passwd</td>
+<td align="left">修改用户密码，不指定用户默认修改当前登录用户密码</td>
+</tr>
+</tbody></table>
+<h3 id="6-which命令的使用"><a href="#6-which命令的使用" class="headerlink" title="6. which命令的使用"></a>6. which命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">which</td>
+<td align="left">查看命令位置</td>
+</tr>
+</tbody></table>
+<h3 id="7-关机和重启命令的使用"><a href="#7-关机和重启命令的使用" class="headerlink" title="7. 关机和重启命令的使用"></a>7. 关机和重启命令的使用</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">shutdown –h now</td>
+<td align="left">立刻关机</td>
+</tr>
+<tr>
+<td align="left">reboot</td>
+<td align="left">重启</td>
+</tr>
+</tbody></table>
+<h2 id="用户相关操作"><a href="#用户相关操作" class="headerlink" title="用户相关操作"></a>用户相关操作</h2><h3 id="1-创建用户"><a href="#1-创建用户" class="headerlink" title="1. 创建用户"></a>1. 创建用户</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">useradd</td>
+<td align="left">创建(添加)用户</td>
+</tr>
+</tbody></table>
+<p><strong>useradd命令选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-m</td>
+<td align="left">自动创建用户主目录,主目录的名字就是用户名</td>
+</tr>
+<tr>
+<td align="left">-g</td>
+<td align="left">指定用户所属的用户组，默认不指定会自动创建一个同名的用户组</td>
+</tr>
+</tbody></table>
+<p><strong>说明:</strong></p>
+<ul>
+<li><strong>useradd</strong> 命令的使用需要使用管理员权限，前面需要加上 <strong>sudo</strong></li>
+<li>创建用户如果不指定用户组，默认会自动创建一个同名的用户组</li>
+<li>查看用户是否创建成功，可以查看<strong>/etc/passwd</strong>这个文件</li>
+<li>查看用户组是否创建成功，可以查看<strong>/etc/group</strong>这个文件</li>
+</ul>
+<p><strong>passwd文件中的每项信息说明,以root:x:0:0:root:/root:/bin/bash为例:</strong></p>
+<ul>
+<li>第一个：用户名</li>
+<li>第二个：密码占位符</li>
+<li>第三个：uid, 用户id</li>
+<li>第四个：gid, 用户所在组id</li>
+<li>第五个：用户描述, 可选，</li>
+<li>第六个：用户的主目录所在位置</li>
+<li>第七个：用户所用 shell 的类型，一般由bash或者sh，默认不设置是sh类型</li>
+</ul>
+<p><strong>group文件中的每项信息说明, 以laowang:x:1001:为例:</strong></p>
+<ul>
+<li>第一个：用户组名</li>
+<li>第二个：用户组密码占位符，一般Linux系统的用户组都没有密码的</li>
+<li>第三个：组id</li>
+</ul>
+<p><strong>id命令查看用户信息:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">id</td>
+<td align="left">查看用户信息</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/id.png" alt="id命令"></p>
+<p><strong>每项信息说明:</strong></p>
+<p>uid=1001(laowang) gid=1001(laowang) 组=1001(laowang)</p>
+<ul>
+<li>第一个: uid 表示用户id</li>
+<li>第二个: gid 表示用户组id</li>
+<li>第三个: 组 表示用户所在的用户组</li>
+</ul>
+<h3 id="2-设置密码"><a href="#2-设置密码" class="headerlink" title="2. 设置密码"></a>2. 设置密码</h3><p>给其它用户设置密码，需要使用: <strong>sudo passwd 用户名</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/useradd-2.png" alt="useradd命令"></p>
+<h3 id="3-切换用户"><a href="#3-切换用户" class="headerlink" title="3. 切换用户"></a>3. 切换用户</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">su</td>
+<td align="left">切换用户</td>
+</tr>
+</tbody></table>
+<p><strong>语法格式: su - 用户名</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/su.png" alt="su命令"></p>
+<p><strong>在laowang用户使用sudo -s效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/sudo-s%E9%97%AE%E9%A2%98.png" alt="sudo -s命令"></p>
+<p>解决办法:</p>
+<ul>
+<li>给laowang用户设置一个sudo附加组， 需要使用usermod修改用户信息</li>
+</ul>
+<h3 id="4-修改用户信息"><a href="#4-修改用户信息" class="headerlink" title="4. 修改用户信息"></a>4. 修改用户信息</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">usermod</td>
+<td align="left">修改用户信息</td>
+</tr>
+</tbody></table>
+<p><strong>usermod选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-G</td>
+<td align="left">设置一个附加组</td>
+</tr>
+<tr>
+<td align="left">-g</td>
+<td align="left">修改用户组</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E9%99%84%E5%8A%A0%E7%BB%84.png" alt="usermod命令"></p>
+<p><strong>设置附加组sudo以后，在sudo -s切换到管理员用户效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E8%AE%BE%E7%BD%AE%E9%99%84%E5%8A%A0%E7%BB%84%E4%BD%BF%E7%94%A8sudo-s.png" alt="usermod命令"></p>
+<h3 id="5-扩展-删除附加组"><a href="#5-扩展-删除附加组" class="headerlink" title="5. 扩展: 删除附加组"></a>5. 扩展: 删除附加组</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">gpasswd</td>
+<td align="left">添加和删除附加组信息</td>
+</tr>
+</tbody></table>
+<p><strong>gpasswd命令选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-a 用户名</td>
+<td align="left">给用户添加附加组</td>
+</tr>
+<tr>
+<td align="left">-d 用户名</td>
+<td align="left">给用户删除附加组</td>
+</tr>
+</tbody></table>
+<p><strong>删除附加组效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%88%A0%E9%99%A4%E9%99%84%E5%8A%A0%E7%BB%84.png" alt="usermod命令"></p>
+<p><strong>删除附加组再次使用 sudo -s 效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%88%A0%E9%99%A4%E9%99%84%E5%8A%A0%E7%BB%84%E9%97%AE%E9%A2%98.png" alt="usermod命令"></p>
+<h3 id="5-删除用户"><a href="#5-删除用户" class="headerlink" title="5. 删除用户"></a>5. 删除用户</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">userdel</td>
+<td align="left">删除用户</td>
+</tr>
+</tbody></table>
+<p><strong>userdel命令选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-r 用户名</td>
+<td align="left">删除用户主目录，必须要设置，否则用户主目录不会删除</td>
+</tr>
+</tbody></table>
+<p><strong>删除用户效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7-1.png" alt="userdel命令"></p>
+<p><strong>id查看用户信息效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7-2.png" alt="userdel命令"></p>
+<p><strong>查看group文件信息效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7-3.png" alt="userdel命令"></p>
+<p><strong>说明:</strong></p>
+<ul>
+<li>删除用户，默认同名的用户组也会被删除</li>
+</ul>
+<h2 id="用户组相关操作"><a href="#用户组相关操作" class="headerlink" title="用户组相关操作"></a>用户组相关操作</h2><h3 id="1-创建用户组"><a href="#1-创建用户组" class="headerlink" title="1. 创建用户组"></a>1. 创建用户组</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">groupadd</td>
+<td align="left">创建(添加)用户组</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E7%94%A8%E6%88%B7%E7%BB%84-1.png" alt="groupadd命令"></p>
+<h3 id="2-创建用户并指定用户组"><a href="#2-创建用户并指定用户组" class="headerlink" title="2. 创建用户并指定用户组"></a>2. 创建用户并指定用户组</h3><p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E7%94%A8%E6%88%B7%E7%BB%84-2.png" alt="groupadd命令"></p>
+<h3 id="3-修改用户组"><a href="#3-修改用户组" class="headerlink" title="3. 修改用户组"></a>3. 修改用户组</h3><p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E7%94%A8%E6%88%B7%E7%BB%84-3.png" alt="usermod命令"></p>
+<h3 id="4-删除用户组"><a href="#4-删除用户组" class="headerlink" title="4. 删除用户组"></a>4. 删除用户组</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">groupdel</td>
+<td align="left">删除用户组</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E7%94%A8%E6%88%B7%E7%BB%84-4.png" alt="groupdel命令"></p>
+<p><strong>说明:</strong></p>
+<ul>
+<li>如果用户组下面有用户先删除用户在删除用户组</li>
+</ul>
+<h2 id="远程登录、远程拷贝命令的介绍"><a href="#远程登录、远程拷贝命令的介绍" class="headerlink" title="远程登录、远程拷贝命令的介绍"></a>远程登录、远程拷贝命令的介绍</h2><h3 id="1-远程登录、远程拷贝命令的介绍"><a href="#1-远程登录、远程拷贝命令的介绍" class="headerlink" title="1. 远程登录、远程拷贝命令的介绍"></a>1. 远程登录、远程拷贝命令的介绍</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ssh</td>
+<td align="left">远程登录</td>
+</tr>
+<tr>
+<td align="left">scp</td>
+<td align="left">远程拷贝</td>
+</tr>
+</tbody></table>
+<h3 id="2-ssh命令的使用"><a href="#2-ssh命令的使用" class="headerlink" title="2. ssh命令的使用"></a>2. ssh命令的使用</h3><p>ssh是专门为远程登录提供的一个安全性协议，常用于远程登录，想要使用ssh服务，需要安装相应的服务端和客户端软件，当软件安装成功以后就可以使用ssh命令了，以后可以通过远程登录之间操作远程的服务器。</p>
+<p><strong>软件安装步骤:</strong></p>
+<ol>
+<li>假如Ubuntu作为服务端,需要安装ssh服务端软件. 执行命令: <strong>sudo apt-get install openssh-server</strong></li>
+<li>客户端电脑如果是 <strong>macOS</strong> 系统则不需要安装 ssh 客户端软件，默认已经安装过了，<strong>直接可以使用 ssh 命令</strong></li>
+<li>客户端电脑如果是Windows系统则需要安装<strong>OpenSSH for Windows</strong>这个软件</li>
+</ol>
+<p><strong>ssh命令格式:</strong></p>
+<p>ssh 用户名@ip地址</p>
+<p><strong>ssh命令效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/ssh-1.png" alt="ssh命令"></p>
+<p><strong>说明:</strong></p>
+<ul>
+<li>在一台电脑上可以安装安装ssh客户端和ssh服务端软件</li>
+<li>在Ubuntu安装ssh客户端命令: sudo apt-get install openssh-client</li>
+</ul>
+<h3 id="3-scp命令的使用"><a href="#3-scp命令的使用" class="headerlink" title="3. scp命令的使用"></a>3. scp命令的使用</h3><p>scp是基于ssh进行远程文件拷贝的命令，也就是说需要保证服务端和客户端电脑安装了相应的ssh软件，以后可以把我们写代码远程拷贝到服务器。</p>
+<p><strong>scp命令格式:</strong></p>
+<ul>
+<li>远程拷贝文件<ul>
+<li>scp 本地文件 远程服务器用户名@远程服务器ip地址:指定拷贝到远程服务器的路径</li>
+<li>scp 远程服务器用户名@远程服务器ip地址:远程服务器文件 指定拷贝到本地电脑的路径</li>
+</ul>
+</li>
+<li>远程拷贝目标<ul>
+<li>scp -r 本地目录 远程服务器用户名@远程服务器ip地址:指定拷贝到远程服务器的路径</li>
+<li>scp -r 远程服务器用户名@远程服务器ip地址:远程服务器目录 指定拷贝到本地电脑的路径</li>
+<li>-r 表示递归拷贝整个目录</li>
+</ul>
+</li>
+</ul>
+<p><strong>本地文件远程拷贝到服务器效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/scp-1.png" alt="scp命令"></p>
+<p><strong>服务器文件远程拷贝到本地效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/scp-2.png" alt="scp命令"></p>
+<p><strong>本地目录远程拷贝到服务器效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/scp-3.png" alt="scp命令"></p>
+<p><strong>服务器目录远程拷贝到本地效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/scp-4.png" alt="scp命令"></p>
+<h3 id="4-FileZilla软件的使用"><a href="#4-FileZilla软件的使用" class="headerlink" title="4. FileZilla软件的使用"></a>4. FileZilla软件的使用</h3><p>FileZilla 是一个免费开源的FTP软件, 使用可视化方式进行上传和下载文件。以后可以通过 FileZilla 来代替 <strong>scp</strong> 命令</p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/f1.png" alt="FileZilla"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/f2.png" alt="FileZilla"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/f3.png" alt="FileZilla"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/f4.png" alt="FileZilla"></p>
+<h1 id="编辑器-vim"><a href="#编辑器-vim" class="headerlink" title="编辑器 vim"></a>编辑器 vim</h1><p>vim 是一款功能强大的文本编辑器，也是早年 Vi 编辑器的加强版，它的最大特色就是使用命令进行编辑，完全脱离了鼠标的操作。</p>
+<h3 id="1-vim-的介绍"><a href="#1-vim-的介绍" class="headerlink" title="1. vim 的介绍"></a>1. vim 的介绍</h3><p>vim 是一款功能强大的文本编辑器，也是早年 Vi 编辑器的加强版，它的最大特色就是使用命令进行编辑，完全脱离了鼠标的操作。</p>
+<h3 id="2-vim-的工作模式"><a href="#2-vim-的工作模式" class="headerlink" title="2. vim 的工作模式"></a>2. vim 的工作模式</h3><ul>
+<li>命令模式</li>
+<li>编辑模式</li>
+<li>末行模式</li>
+</ul>
+<p><strong>说明:</strong></p>
+<p>vim 打开文件进入的是命令模式</p>
+<p><strong>工作模式效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/vim%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F.png" alt="ssh命令"></p>
+<p><strong>注意点:</strong></p>
+<p>编辑模式和末行模式之间不能直接进行切换，都需要通过命令模式来完成。</p>
+<h3 id="3-vim-的末行模式命令"><a href="#3-vim-的末行模式命令" class="headerlink" title="3. vim 的末行模式命令"></a>3. vim 的末行模式命令</h3><ul>
+<li>:w 保存</li>
+<li>:wq 保存退出</li>
+<li>:x 保存退出</li>
+<li>:q! 强制退出</li>
+</ul>
+<h3 id="4-vim-的常用命令"><a href="#4-vim-的常用命令" class="headerlink" title="4. vim 的常用命令"></a>4. vim 的常用命令</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">yy</td>
+<td align="left">复制光标所在行</td>
+</tr>
+<tr>
+<td align="left">p</td>
+<td align="left">粘贴</td>
+</tr>
+<tr>
+<td align="left">dd</td>
+<td align="left">删除/剪切当前行</td>
+</tr>
+<tr>
+<td align="left">V</td>
+<td align="left">按行选中</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td align="left">撤销</td>
+</tr>
+<tr>
+<td align="left">ctr+r</td>
+<td align="left">反撤销</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;</td>
+<td align="left">往右缩进</td>
+</tr>
+<tr>
+<td align="left">&lt;&lt;</td>
+<td align="left">往左缩进</td>
+</tr>
+<tr>
+<td align="left">:/搜索的内容</td>
+<td align="left">搜索指定内容</td>
+</tr>
+<tr>
+<td align="left">:%s/要替换的内容/替换后的内容/g</td>
+<td align="left">全局替换</td>
+</tr>
+<tr>
+<td align="left">:开始行数,结束行数s/要替换的内容/替换后的内容</td>
+<td align="left">局部替换</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">重复上一次命令操作</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td align="left">回到最后一行</td>
+</tr>
+<tr>
+<td align="left">gg</td>
+<td align="left">回到第一行</td>
+</tr>
+<tr>
+<td align="left">数字+G</td>
+<td align="left">回到指定行</td>
+</tr>
+<tr>
+<td align="left">shift+6</td>
+<td align="left">回到当前行的行首</td>
+</tr>
+<tr>
+<td align="left">shift+4</td>
+<td align="left">回到当前行的行末</td>
+</tr>
+<tr>
+<td align="left">ctr+f</td>
+<td align="left">下一屏</td>
+</tr>
+<tr>
+<td align="left">ctr+b</td>
+<td align="left">上一屏</td>
+</tr>
+</tbody></table>
+<h1 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h1><h3 id="1-软件安装的介绍"><a href="#1-软件安装的介绍" class="headerlink" title="1. 软件安装的介绍"></a>1. 软件安装的介绍</h3><p>Ubuntu软件安装有两种方式:</p>
+<ul>
+<li>离线安装(deb文件格式安装）</li>
+<li>在线安装(apt-get方式安装)</li>
+</ul>
+<h3 id="2-deb文件格式安装"><a href="#2-deb文件格式安装" class="headerlink" title="2. deb文件格式安装"></a>2. deb文件格式安装</h3><p>是 Ubuntu 的安装包格式，可以使用 <strong>dpkg</strong> 命令进行软件的安装和卸载。</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dpkg</td>
+<td align="left">安装和卸载deb安装包</td>
+</tr>
+</tbody></table>
+<p><strong>dpkg命令选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-i</td>
+<td align="left">离线安装deb安装包</td>
+</tr>
+</tbody></table>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/deb%E5%AE%89%E8%A3%85.png" alt="dpkg命令"></p>
+<h3 id="3-apt-get方式安装"><a href="#3-apt-get方式安装" class="headerlink" title="3. apt-get方式安装"></a>3. apt-get方式安装</h3><p>是在线安装deb软件包的命令，主要用于在线从互联网的软件仓库中<strong>搜索、安装、升级、卸载</strong>软件。</p>
+<p><strong>在线安装软件命令格式:</strong></p>
+<ul>
+<li><strong>sudo apt–get install 安装包</strong> , 表示在线安装deb安装包</li>
+</ul>
+<h3 id="4-更改镜像源"><a href="#4-更改镜像源" class="headerlink" title="4. 更改镜像源"></a>4. 更改镜像源</h3><p>因为使用 apt-get 命令默认是从国外的服务器下载安装软件的，会导致下载安装速度很慢，所以需要更改成国内的镜像源服务器。</p>
+<p><strong>镜像源说明:</strong></p>
+<p>镜像源就是下载软件来源的服务器。</p>
+<p><strong>镜像源效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E9%95%9C%E5%83%8F%E6%BA%90.png" alt="镜像源命令"></p>
+<p><strong>更改镜像源的方式:</strong></p>
+<ol>
+<li>可视化方式更改镜像源</li>
+<li>手动方式更改镜像源</li>
+</ol>
+<p><strong>可视化方式更改镜像源:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BF%AE%E6%94%B9-1.png" alt="可视化方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BF%AE%E6%94%B9-2.png" alt="可视化方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BF%AE%E6%94%B9-3.png" alt="可视化方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BF%AE%E6%94%B9-4.png" alt="可视化方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BF%AE%E6%94%B9-5.png" alt="可视化方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BF%AE%E6%94%B9-6.png" alt="可视化方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BF%AE%E6%94%B9-7.png" alt="可视化方式更改镜像源"></p>
+<p><strong>手动方式更改镜像源:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-1.png" alt="手动方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-2.png" alt="手动方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-3.png" alt="手动方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-4.png" alt="手动方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-5.png" alt="手动方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-6.png" alt="手动方式更改镜像源"></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-7.png" alt="手动方式更改镜像源"></p>
+<p><strong>说明:</strong></p>
+<ol>
+<li>手动修改镜像源，配置完成以后需要执行 <strong>sudo apt-get update</strong> 这个命令，更新镜像源保证可以下载最新的软件。</li>
+<li><strong>使用apt-get方式安装软件一定要联网</strong></li>
+</ol>
+<h3 id="5-小结"><a href="#5-小结" class="headerlink" title="5. 小结"></a>5. 小结</h3><ol>
+<li>Ubuntu 操作系统安装软件有两种方式:<ul>
+<li><strong>sudo dpkg -i 安装包</strong> 命令</li>
+<li><strong>sudo apt-get install 安装包</strong> 命令卸载</li>
+</ul>
+</li>
+<li>使用 <strong>apt-get</strong> 命令也就是在线安装需要更改镜像源，提高下载和安装速度。</li>
+</ol>
+<h1 id="软件卸载"><a href="#软件卸载" class="headerlink" title="软件卸载"></a>软件卸载</h1><h3 id="1-软件卸载的介绍"><a href="#1-软件卸载的介绍" class="headerlink" title="1. 软件卸载的介绍"></a>1. 软件卸载的介绍</h3><p>Ubuntu软件卸载有两种方式:</p>
+<ul>
+<li>离线安装包的卸载(deb 文件格式卸载）</li>
+<li>在线安装包的卸载(apt-get 方式卸载)</li>
+</ul>
+<h3 id="2-deb-文件格式卸载"><a href="#2-deb-文件格式卸载" class="headerlink" title="2. deb 文件格式卸载"></a>2. deb 文件格式卸载</h3><p><strong>命令格式:</strong></p>
+<p><strong>sudo dpkg –r 安装包名</strong></p>
+<p>-r 选项表示安装的卸载</p>
+<p><strong>dpkg 卸载效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/deb%E5%8D%B8%E8%BD%BD.png" alt="dpkg命令"></p>
+<h3 id="3-apt-get-方式卸载"><a href="#3-apt-get-方式卸载" class="headerlink" title="3. apt-get 方式卸载"></a>3. apt-get 方式卸载</h3><p><strong>命令格式:</strong></p>
+<p><strong>sudo apt-get remove 安装包名</strong></p>
+<p><strong>apt-get 卸载效果图:</strong></p>
+<p><img src="https://raw.githubusercontent.com/Casuor/ImgCDN/master/img/apt-get%E5%8D%B8%E8%BD%BD.png" alt="apt-get命令"></p>
+<h3 id="4-小结"><a href="#4-小结" class="headerlink" title="4. 小结"></a>4. 小结</h3><ul>
+<li>Ubuntu 操作系统卸载软件有两种方式:<ul>
+<li><strong>dpkg -r 安装包</strong> 命令</li>
+<li><strong>apt-get remove 安装包</strong> 命令卸载                                                                                                                                                                                                                                                                                    j;y7jhg6=h</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Casuor/CDN/null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent">
+        </div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+              target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i>
+              知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+        <div class="post-nepre half previous">
+          
+            <a href="/2019/02/25/geek_%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg"
+                  style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
+                  src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/xiangxiang.jpg">
+              </div>
+              <span class="label">
+                Previous Post</span>
+              <div class="info">
+                <h3>
+                  算法导论札记</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="post-nepre half next">
+            
+              <a href="/2019/01/11/geek_pythonNotes/" rel="next">
+                <div class="background">
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Casuor/CDN@latest/Posts/Image/Common/kawayi0.jpg">
+                </div>
+                <span class="label">
+                  Next Post</span>
+                <div class="info">
+                  <h3>
+                    python Notes</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "88bwpzeLj6cM5Ih7CDJsUwzz-gzGzoHsz",
+        appKey: "L1bSPRMkKoL4w1KzkT85rXnl",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image"
+              alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+              <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+    </div>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Casuor<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/Casuor/CDN/Video","name":"success.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Casuor/CDN//Image/avatar.png">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Casuor</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Casuor" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/Geek/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Live/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Resource/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Thinking/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Transfer/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/Reading/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Comic/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  动漫
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/Picture/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  我的盘
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="5251153855"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+
+</html>
